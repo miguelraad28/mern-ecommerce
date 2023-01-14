@@ -1,6 +1,6 @@
 const {Router} = require("express")
 const router = Router()
-const {checkEmail, checkDni, checkPassword} = require("../../middlewares/verifySignUp")
+const {checkEmail, checkPassword} = require("../../middlewares/verifySignUp")
 const {tokenValidation} = require("../../middlewares/verifyJWT")
 const {login, register} = require("../../controllers/auth.controller")
 
