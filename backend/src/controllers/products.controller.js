@@ -14,10 +14,10 @@ productsController.createProduct = async (req, res) => {
         visibility
     })
 
-    const foundCategory = await ProductCategory.findOne({ name: { $in: category } })
-    newProduct.category = foundCategory.name
+    const categoryFound = await ProductCategory.findOne({ name: { $in: category } })
+    newProduct.category = {name: categoryFound.name, tags: categoryFound.tags}
     const productSaved = await newProduct.save()
-    res.json({...productSaved})
+    res.json({...productSaved._doc})
 }
 
 module.exports = productsController

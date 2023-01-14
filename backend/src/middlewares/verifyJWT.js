@@ -20,7 +20,7 @@ const verifyAdminToken = async (req, res, next) => {
     req.userId = id
     const user = await User.findById(req.userId)
     const userRole = await Role.findOne({ _id: { $in: user.roles } })
-    if (userRole.nombre === "admin") return next()
+    if (userRole.name === "admin") return next()
     res.status(403).json({ message: "Requiere permisos de administrador" })
 }
 

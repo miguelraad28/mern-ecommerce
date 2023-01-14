@@ -16,11 +16,11 @@ authController.register = async (req, res) => {
     })
 
     if (roles) {
-        const foundRole = await Role.findOne({ nombre: { $in: roles } })
-        newUser.roles = foundRole._id
+        const foundRole = await Role.findOne({ name: { $in: roles } })
+        newUser.roles = {_id: foundRole._id, name: foundRole.name}
     } else {
-        const role = await Role.findOne({ nombre: "client" })
-        newUser.roles = [role._id]
+        const role = await Role.findOne({ name: "client" })
+        newUser.roles = {_id: role._id, name: role.name}
     }
 
     const userSaved = await newUser.save()

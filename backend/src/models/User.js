@@ -25,8 +25,14 @@ const userSchema = new Schema({
         unique: true
     },
     roles: {
-        type: Schema.Types.ObjectId,
-        ref: "Role"
+        _id: {
+            type: Schema.Types.ObjectId,
+            ref: "Role"
+        },
+        name: {
+            type: Schema.Types.String,
+            ref: "Role"
+        }
     },
     purchases: [
         {
