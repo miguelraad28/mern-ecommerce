@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 mongoose.set('strictQuery', true)
-mongoose.connect("mongodb+srv://miguelraad28:KONbsualPqOi6kGs@cluster0.zhgpoxi.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGODB_URI);
 
 const connection = mongoose.connection
 
 connection.once("open",() => {
-    console.log(`DB conectada mongodb+srv://miguelraad28:KONbsualPqOi6kGs@cluster0.zhgpoxi.mongodb.net/?retryWrites=true&w=majority`)
+    console.log(`DB conectada MONGODB`)
 })
