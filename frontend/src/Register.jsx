@@ -18,7 +18,7 @@ const Register = () => {
             const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/register", user)
             setUserLoggedIn(res.data)
         } catch (error) {
-            console.log(error)
+            alert(error.response.data.message)
         }
     }
     const { name,
