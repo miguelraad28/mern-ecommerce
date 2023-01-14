@@ -9,6 +9,9 @@ app.use(cors({
 app.use(express.static(__dirname + "/public"))
 
 // Clients routes
+app.get("/", (req, res) => {
+    res.send("LIVE ON VERCEL")
+})
 app.use("/api/auth", require("./routes/client/auth.routes.js"))
 app.get("/api/products", (req, res) =>{
     res.json({message: "getting"})
