@@ -57,7 +57,7 @@ const Register = () => {
                     value={roles}
                     name="roles"
                     type="text" />
-                    <button>Register</button>
+                    <button type='submit'>Register</button>
             </form>
         </div>
     );

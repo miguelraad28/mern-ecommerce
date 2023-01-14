@@ -11,6 +11,6 @@ router.route("/login")
 .post(login)
 
 router.route("/register")
-.post(checkEmail, checkDni, checkPassword, register)
+.post(checkEmail, checkPassword, register)
 
 module.exports = router

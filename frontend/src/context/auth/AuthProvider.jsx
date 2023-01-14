@@ -16,6 +16,12 @@ const AuthProvider = (props) => {
     }
     const signUp = async (e, user) => {
         e.preventDefault()
+        try {
+            const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/register", user)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <AuthContext.Provider value={{ user, logIn, logOut, signUp }}>
