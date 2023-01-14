@@ -24,7 +24,7 @@ authController.register = async (req, res) => {
     }
 
     const userSaved = await newUser.save()
-
+    userSaved = await newUser
     const token = jwt.sign({ id: userSaved._id }, config.SECRET, {
         expiresIn: 86400
     })
@@ -32,7 +32,7 @@ authController.register = async (req, res) => {
 }
 authController.login = async (req, res) => {
 
-    const userFound = await User.findOne({ email: req.body.email }).populate("roles")
+    const userFound = await User.findOne({ email: req.body.email })
 
     if (!userFound) return res.status(400).json({ message: "El email no está registrado" })
 
@@ -43,6 +43,7 @@ authController.login = async (req, res) => {
     const token = jwt.sign({ id: userFound._id }, config.SECRET, {
         expiresIn: 86400
     })
+    console.log(userFound)
     res.json({...userFound._doc, token })
 }
 

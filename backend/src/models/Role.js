@@ -1,7 +1,7 @@
 const {Schema, model} = require("mongoose")
 
 const roleSchema = new Schema({
-    nombre: String,
+    name: String,
 },{
     versionKey: false
 })

@@ -31,7 +31,7 @@ const tokenValidation = async (req, res, next) => {
             res.json({ err: err, message: "Sesión expirada, vuelve a iniciar" })
         } else {
             req.userId = decoded.id
-            const userFound = await User.findOne({ _id: req.userId }).populate("roles")
+            const userFound = await User.findOne({ _id: req.userId })
             return res.json({ ...userFound._doc, token })
         }
     })
