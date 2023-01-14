@@ -1,13 +1,16 @@
 import Login from "./Login";
 import Register from "./Register";
 import { AuthContext } from "./context/auth/AuthProvider";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 function App() {
-  const {user, logOut} = useContext(AuthContext);
+  const { userLoggedIn, setUserLoggedIn } = useContext(AuthContext);
+  const logOut = () => {
+    setUserLoggedIn(false)
+  }
   return (
     <div className="App">
-      {user ?
-        <button onClick={() => logOut}>Log out</button>
+      {userLoggedIn ?
+        <button onClick={logOut}>Log out, {userLoggedIn.name} {userLoggedIn.lastname} {userLoggedIn.dni}</button>
         :
         <>
           <Login />

@@ -1,22 +1,30 @@
-import {React, useState, useContext} from 'react';
+import { React, useState, useContext } from 'react';
 import { AuthContext } from './context/auth/AuthProvider';
+import axios from 'axios';
 const Login = () => {
-    const { logIn } = useContext(AuthContext);
+    const { userLoggedIn, setUserLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const handleOnChange = (e) => {
         e.preventDefault()
         setUser({
             ...user,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
         console.log(user)
     }
-    const { name,
-        lastname,
-        dni,
+    const logIn = async (e, data) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/login", user)
+            setUserLoggedIn(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const { 
         email,
         password,
-        roles } = user
+        } = user
     return (
         <div>
             <h1>Login</h1>
@@ -33,7 +41,7 @@ const Login = () => {
                     value={password}
                     name="password"
                     type="password" />
-                    <button>Log in</button>
+                <button>Log in</button>
             </form>
         </div>
     );
