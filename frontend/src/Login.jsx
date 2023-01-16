@@ -27,6 +27,7 @@ const Login = () => {
         } = user
     return (
         <div>
+            <h1>PRUEBA</h1>
             <h1>Login</h1>
             <form onSubmit={logIn} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Email</label>
