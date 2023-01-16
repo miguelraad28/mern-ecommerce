@@ -33,6 +33,9 @@ const saleSchema = new Schema({
     shippingCost:{
         type: Number,
     },
+    subTotal:{
+        type: Number,
+    },
     paymentMethod: {
         type: String,
         required: true

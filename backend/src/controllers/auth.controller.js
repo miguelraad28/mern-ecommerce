@@ -44,4 +44,10 @@ authController.login = async (req, res) => {
     res.json({...userFound._doc, token })
 }
 
+authController.changePassword = async( req, res) => {
+
+}
+authController.changeEmail = async( req, res) => {
+    
+}
 module.exports = authController

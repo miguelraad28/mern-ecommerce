@@ -21,7 +21,7 @@ coursesController.getCourses = async(req, res) => {
     res.json(await Course.find())
 }
 coursesController.getCourse = async(req, res) => {
-
+    res.json(await Course.find(req.params.courseId))
 }
 coursesController.updateCourse = async(req, res) => {
 
