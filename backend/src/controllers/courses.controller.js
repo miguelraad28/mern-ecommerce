@@ -2,7 +2,7 @@ const coursesController = {}
 const Course = require("../models/Course")
 
 coursesController.createCourse = async (req, res) => {
-    const { name, description, category, price, offerPrice, visibility, source } = req.body
+    const { name, description, category, price, offerPrice, priceUSD, offerPriceUSD, visibility, source } = req.body
     console.log(req)
     const newCourse = new Course({
         name,
