@@ -5,14 +5,13 @@ const User = require("../models/User")
 const Role = require("../models/Role");
 
 authController.register = async (req, res) => {
-    const { name, lastname, email, password, dni, roles, purchases } = req.body
+    const { name, lastname, email, password, dni, roles } = req.body
     const newUser = new User({
         name,
         lastname,
         email,
         password: await User.encryptPassword(password),
         dni,
-        purchases
     })
 
     if (roles) {
@@ -24,7 +23,6 @@ authController.register = async (req, res) => {
     }
 
     const userSaved = await newUser.save()
-    userSaved = await newUser
     const token = jwt.sign({ id: userSaved._id }, config.SECRET, {
         expiresIn: 86400
     })

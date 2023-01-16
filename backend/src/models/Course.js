@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const productSchema = new Schema({
+const courseSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -10,17 +10,7 @@ const productSchema = new Schema({
         required: true
     },
     category: {
-        name: {
-            type: Schema.Types.String,
-            ref: "ProductCategory"
-        },
-        tags: {
-            type: Schema.Types.Array,
-            ref: "ProductCategory"
-        }
-    },
-    stock: {
-        type: Number,
+        type: String,
         required: true
     },
     price: {
@@ -30,14 +20,29 @@ const productSchema = new Schema({
     offerPrice: {
         type: Number,
     },
+    priceUSD: {
+        type: Number,
+    },
+    offerPriceUSD: {
+        type: Number,
+    },
     visibility: {
         type: Boolean,
         required: true,
         default: true
     },
+    source: [
+        {
+            type:String,
+            required:true
+        }
+    ],
+    tumbnail: {
+        type: Schema.Types.ObjectId
+    }
 }, {
-    timestamps: true,
+    timestamps: false,
     versionKey: false
 })
 
-module.exports = model("Product", productSchema)
+module.exports = model("Course", courseSchema)

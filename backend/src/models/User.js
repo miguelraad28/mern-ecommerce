@@ -24,6 +24,18 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    purchases: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Sale"
+        }
+    ],
+    accessTo: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Course"
+        }
+    ],
     roles: {
         _id: {
             type: Schema.Types.ObjectId,
@@ -34,12 +46,6 @@ const userSchema = new Schema({
             ref: "Role"
         }
     },
-    purchases: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Sale"
-        }
-    ]
 
 }, {
     timestamps: true,
