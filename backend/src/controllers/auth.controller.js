@@ -41,7 +41,6 @@ authController.login = async (req, res) => {
     const token = jwt.sign({ id: userFound._id }, config.SECRET, {
         expiresIn: 86400
     })
-    console.log(userFound)
     res.json({...userFound._doc, token })
 }
 

@@ -12,10 +12,10 @@ const Register = () => {
         })
         console.log(user)
     }
-    const signUp = async (e, data) => {
+    const signUp = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3001/api/auth/register", user)
+            const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/register", user)
             setUserLoggedIn(res.data)
         } catch (error) {
             alert(error)
