@@ -28,7 +28,6 @@ const courseSchema = new Schema({
     },
     visibility: {
         type: Boolean,
-        required: true,
         default: true
     },
     source: [
