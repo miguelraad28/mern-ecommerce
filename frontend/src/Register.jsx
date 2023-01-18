@@ -1,8 +1,7 @@
 import { React, useState, useContext } from 'react';
 import { AuthContext } from './context/auth/AuthProvider';
-import axios from "axios"
 const Register = () => {
-    const { userLoggedIn, setUserLoggedIn } = useContext(AuthContext);
+    const { signUp } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const handleOnChange = (e) => {
         e.preventDefault()
@@ -12,15 +11,7 @@ const Register = () => {
         })
         console.log(user)
     }
-    const signUp = async (e) => {
-        e.preventDefault()
-        try {
-            const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/register", user)
-            setUserLoggedIn(res.data)
-        } catch (error) {
-            alert(error)
-        }
-    }
+    
     const { name,
         lastname,
         dni,
@@ -30,7 +21,7 @@ const Register = () => {
     return (
         <div>
             <h1>Register</h1>
-            <form onSubmit={signUp} style={{ display: "flex", flexDirection: "column", }}>
+            <form onSubmit={(e) => signUp(e, user)} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Name</label>
                 <input
                     onChange={handleOnChange}

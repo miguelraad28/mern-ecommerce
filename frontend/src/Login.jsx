@@ -1,8 +1,8 @@
 import { React, useState, useContext } from 'react';
 import { AuthContext } from './context/auth/AuthProvider';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Login = () => {
-    const { userLoggedIn, setUserLoggedIn } = useContext(AuthContext);
+    const { logIn } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const handleOnChange = (e) => {
         e.preventDefault()
@@ -12,15 +12,7 @@ const Login = () => {
         })
         console.log(user)
     }
-    const logIn = async (e, data) => {
-        e.preventDefault()
-        try {
-            const res = await axios.post("https://mern-ecommerce-back-ashen.vercel.app/api/auth/login", user)
-            setUserLoggedIn(res.data)
-        } catch (error) {
-            alert(error)
-        }
-    }
+    
     const { 
         email,
         password,
@@ -29,7 +21,7 @@ const Login = () => {
         <div>
             <h1>PRUEBA</h1>
             <h1>Login</h1>
-            <form onSubmit={logIn} style={{ display: "flex", flexDirection: "column", }}>
+            <form onSubmit={(e) => logIn(e, user)} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Email</label>
                 <input
                     onChange={handleOnChange}
@@ -44,6 +36,7 @@ const Login = () => {
                     type="password" />
                 <button>Log in</button>
             </form>
+            <Link to="/register"><button>Registrarme</button></Link>
         </div>
     );
 }

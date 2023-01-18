@@ -1,6 +1,12 @@
 const coursesController = {}
 const Course = require("../models/Course")
 
+coursesController.getCourses = async(req, res) => {
+    res.json(await Course.find())
+}
+coursesController.getCourse = async(req, res) => {
+    res.json(await Course.findById(req.params.courseId))
+}
 coursesController.createCourse = async (req, res) => {
     const { name, description, category, price, offerPrice, priceUSD, offerPriceUSD, visibility, source } = req.body
     console.log(req)
@@ -16,12 +22,6 @@ coursesController.createCourse = async (req, res) => {
 
     const savedCourse = await newCourse.save()
     res.json({...savedCourse._doc})
-}
-coursesController.getCourses = async(req, res) => {
-    res.json(await Course.find())
-}
-coursesController.getCourse = async(req, res) => {
-    res.json(await Course.find(req.params.courseId))
 }
 coursesController.updateCourse = async(req, res) => {
 

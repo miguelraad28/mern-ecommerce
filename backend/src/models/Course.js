@@ -37,7 +37,7 @@ const courseSchema = new Schema({
         }
     ],
     tumbnail: {
-        type: Schema.Types.ObjectId
+        type: String
     }
 }, {
     timestamps: false,

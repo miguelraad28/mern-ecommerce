@@ -26,7 +26,7 @@ authController.register = async (req, res) => {
     const token = jwt.sign({ id: userSaved._id }, config.SECRET, {
         expiresIn: 86400
     })
-    res.json({ ...userSaved._doc, token })
+    res.json({ user: userSaved._doc, token })
 }
 authController.login = async (req, res) => {
 
@@ -41,13 +41,6 @@ authController.login = async (req, res) => {
     const token = jwt.sign({ id: userFound._id }, config.SECRET, {
         expiresIn: 86400
     })
-    res.json({...userFound._doc, token })
-}
-
-authController.changePassword = async( req, res) => {
-
-}
-authController.changeEmail = async( req, res) => {
-    
+    res.json({user: userFound._doc, token })
 }
 module.exports = authController

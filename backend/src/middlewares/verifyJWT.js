@@ -7,10 +7,25 @@ const verifyToken = async (req, res, next) => {
     const token = req.headers["x-access-token"]
     if (!token) return res.status(403).json({ message: "Debes iniciar sesión" })
     const decoded = jwt.verify(token, config.SECRET)
-    req.userId = decoded.id
     const user = await User.findById(decoded.id)
+    req.user = user
     if (!user) return res.status(404).json({ message: "Tu usuario no ha sido encontrado, vuelve a iniciar sesión" })
     next()
+}
+
+const verifyAccessToCourse = async (req, res, next) => {
+    const token = req.headers["x-access-token"]
+    const course = req.headers["course-id"]
+    if (!token) return res.status(403).json({ message: "Debes iniciar sesión" })
+    const decoded = jwt.verify(token, config.SECRET)
+    const user = await User.findById(decoded.id)
+    req.user = user
+    if (!user) return res.status(404).json({ message: "Tu usuario no ha sido encontrado, vuelve a iniciar sesión" })
+    if (user.accessTo.includes(course)) {
+        next()
+    }else{
+        return res.status(403).json({ message: "Lo siento, pero no tienes acceso a este curso "})
+    }
 }
 
 const verifyAdminToken = async (req, res, next) => {
@@ -28,13 +43,13 @@ const autoLogInTokenValidation = async (req, res, next) => {
     const token = req.headers["x-access-token"]
     jwt.verify(token, config.SECRET, async function (err, decoded) {
         if (err) {
-            res.json({ err: err, message: "Sesión expirada, vuelve a iniciar" })
+            res.json({ err: err, sessionExpired: true })
         } else {
             req.userId = decoded.id
             const userFound = await User.findOne({ _id: req.userId })
-            return res.json({ ...userFound._doc, token })
+            return res.json({ user: userFound._doc, token })
         }
     })
 }
 
-module.exports = { verifyToken, verifyAdminToken, autoLogInTokenValidation }
+module.exports = { verifyToken, verifyAccessToCourse, verifyAdminToken, autoLogInTokenValidation }

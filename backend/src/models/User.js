@@ -32,8 +32,7 @@ const userSchema = new Schema({
     ],
     accessTo: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "Course"
+            type: String
         }
     ],
     roles: {
