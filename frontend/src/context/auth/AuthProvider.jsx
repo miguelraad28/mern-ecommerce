@@ -25,7 +25,7 @@ const AuthProvider = (props) => {
     const signUp = async (e, user) => {
         e.preventDefault()
         try {
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, user)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/auth/register`, user)
             setUserLoggedIn({...res.data.user})
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
         } catch (error) {
@@ -35,7 +35,7 @@ const AuthProvider = (props) => {
     const logIn = async (e, user) => {
         e.preventDefault()
         try {
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, user)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/auth/login`, user)
             setUserLoggedIn({...res.data.user})
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
         } catch (error) {
