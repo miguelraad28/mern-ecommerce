@@ -19,7 +19,7 @@ const Register = () => {
         password,
         roles } = user
     return (
-        <div>
+        <div className='signUpForm'>
             <h1>Register</h1>
             <form onSubmit={(e) => signUp(e, user)} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Name</label>

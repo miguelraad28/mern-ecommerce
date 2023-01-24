@@ -1,0 +1,84 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.coursesListContainer,
+.logInForm,
+.signUpForm {
+    margin: 0 5%;
+}
+
+.logInForm,
+.signUpForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    form {
+        margin: auto;
+        max-width: 500px;
+
+        label {
+            margin-bottom: 3px;
+            margin-left: 8px;
+        }
+
+        input {
+            font-size: 1em;
+            border-radius: 8px;
+            border: 1px solid gray;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+
+            &:focus {
+                border: 1px solid black;
+            }
+        }
+
+        input[type='password'] {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.seeMyCoursesButton,
+.addToCartButton,
+.seeProductDetail,
+.deleteFromCartButton{
+    cursor: pointer;
+    padding: 7px 12px;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 0;
+}
+.seeMyCoursesButton{
+    background-color: rgb(255, 134, 134);
+    &:hover{
+        background-color: rgb(255, 163, 163);
+    }
+}
+.addToCartButton{
+    background-color: rgb(157, 255, 127);
+    &:hover{
+        background-color: rgb(188, 255, 168);
+    }
+}
+.seeProductDetail{
+    background-color: rgb(80, 199, 255);
+    &:hover{
+
+        background-color: rgb(134, 217, 255);
+    }
+}
+.deleteFromCartButton{
+    color: white;
+    background-color: rgb(255, 0, 0);
+    &:hover{
+        background-color: rgb(255, 71, 71);
+    }
+}

@@ -5,12 +5,20 @@ const Purchase = ({_id, products, shippingCost, paymentMethod, subTotal, created
     createdAtModified = createdAtModified.split("-")
     createdAtModified = createdAtModified.reverse()
     createdAtModified = createdAtModified.join(" / ")
-    console.log(createdAtModified)
+    console.log(products)
     return (
         <div>
             <p>{_id}</p>
             <p>{createdAtModified}</p>
             <p>{subTotal}</p>
+            <div style={{border: "2px solid red"}}>
+                {products ? (products.map(product => {
+                    <>
+                    <p>{product.name}</p>
+                    <p>{product.price}</p>
+                    </>
+                })) : <h1> cargando...</h1>}
+            </div>
             <p>{shippingCost}</p>
             <p>{paymentMethod}</p>
         </div>

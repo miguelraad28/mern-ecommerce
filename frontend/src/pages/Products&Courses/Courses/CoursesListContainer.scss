@@ -1,0 +1,22 @@
+.coursesListContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    .courseCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .coursesButtons {
+            display: flex;
+            .youAllreadyHaveAccessButtons {
+                display: flex;
+                flex-direction: column;
+                span{
+                    max-width: 150px;
+                }
+            }
+        }
+    }
+
+}

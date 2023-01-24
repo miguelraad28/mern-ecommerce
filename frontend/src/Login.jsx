@@ -10,7 +10,6 @@ const Login = () => {
             ...user,
             [e.target.name]: e.target.value
         })
-        console.log(user)
     }
     
     const { 
@@ -18,8 +17,7 @@ const Login = () => {
         password,
         } = user
     return (
-        <div>
-            <h1>PRUEBA</h1>
+        <div className='logInForm'>
             <h1>Login</h1>
             <form onSubmit={(e) => logIn(e, user)} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Email</label>
@@ -36,7 +34,7 @@ const Login = () => {
                     type="password" />
                 <button>Log in</button>
             </form>
-            <Link to="/register"><button>Registrarme</button></Link>
+            
         </div>
     );
 }

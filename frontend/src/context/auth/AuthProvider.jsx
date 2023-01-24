@@ -6,7 +6,7 @@ const AuthProvider = (props) => {
     const autoLogIn = async() => {
         if(localStorage.getItem("x-access-token")){
             const token = JSON.parse(localStorage.getItem("x-access-token"))
-            const res = await axios.get(`http://localhost:3001/api/auth/autoLogIn`,{
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/auth/autoLogIn`,{
                 headers: {
                     "x-access-token": token
                 }
@@ -25,7 +25,7 @@ const AuthProvider = (props) => {
     const signUp = async (e, user) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3001/api/auth/register", user)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, user)
             setUserLoggedIn({...res.data.user})
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
         } catch (error) {
@@ -35,8 +35,7 @@ const AuthProvider = (props) => {
     const logIn = async (e, user) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3001/api/auth/login", user)
-            console.log(res)
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, user)
             setUserLoggedIn({...res.data.user})
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
         } catch (error) {

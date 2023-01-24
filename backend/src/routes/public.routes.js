@@ -1,5 +1,5 @@
-const {Router} = require("express")
-const {getCourses, getCourse} = require("../controllers/courses.controller")
+const { Router } = require("express")
+const { getCourses, getCourse, getCartDetail } = require("../controllers/courses.controller")
 const router = Router()
 
 // router.route("/products")
@@ -7,9 +7,11 @@ const router = Router()
 // router.route("/products/:productId")
 // .get(getProduct)
 router.route("/courses")
-.get(getCourses)
+    .get(getCourses)
 router.route("/courses/:courseId")
-.get(getCourse)
+    .get(getCourse)
 
+router.route("/getCartDetail")
+    .get(getCartDetail)
 
 module.exports = router

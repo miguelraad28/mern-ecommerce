@@ -1,6 +1,10 @@
 const coursesController = {}
 const Course = require("../models/Course")
 
+coursesController.getCartDetail = async(req, res) => {
+    const cart = req.headers["cart"].split(",")
+    res.json(await Course.find({_id : cart}))
+}
 coursesController.getCourses = async(req, res) => {
     res.json(await Course.find())
 }
