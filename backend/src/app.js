@@ -6,7 +6,7 @@ const {createSale} = require("./controllers/sales.controller")
 const app = express();
 app.use(express.json()); 
 app.use(cors({
-    origin: "*"
+    origin: '*'
 }));
 app.use("/public", express.static(__dirname + "/public"))
 app.use("/private", verifyAccessToCourse, express.static(__dirname + "/private"))
