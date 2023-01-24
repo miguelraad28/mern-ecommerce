@@ -13,7 +13,7 @@ const CoursesListContainer = () => {
     }, []);
     return (
         <div className='coursesListContainer'>
-            {courses ? courses.map(course => <CourseCard key={course._id} {...course}/>) : <h1>Cargando</h1>}
+            {courses ? courses.map(course => <CourseCard key={course._id} {...course}/>) : <h1>Cargando...</h1>}
         </div>
     );
 }
