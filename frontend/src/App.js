@@ -16,6 +16,7 @@ import PublicRoutes from "./routes/PublicRoutes";
 import CoursesListContainer from "./pages/Products&Courses/Courses/CoursesListContainer";
 import CourseDetail from "./pages/Products&Courses/Courses/CoursesDetail/CourseDetail";
 import CartListContainer from "./pages/Cart/CartListContainer";
+import PurchaseSucceeded from "./pages/Account/MyPurchases/PurchaseSucceeded";
 function App() {
   const { userLoggedIn } = useContext(AuthContext);
   return (
@@ -34,6 +35,7 @@ function App() {
         </Route>
         <Route element={<PrivateRoutes isAllowed={!!userLoggedIn} />}>
           <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/myaccount/purchaseSucceeded" element={<PurchaseSucceeded />} />
           <Route path="/myaccount/purchases" element={<MyPurchases />} />
           <Route path="/myaccount/courses" element={<MyCourses />} />
           <Route path="/myaccount/courses/:courseId" element={<MyCourse />} />

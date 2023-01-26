@@ -11,7 +11,20 @@
         justify-content: center;
         max-width: 700px;
         min-width: 400px;
-
+        .cartTitle{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            a{
+                text-decoration: none;
+                font-style: italic;
+                font-size: 1.2em;
+                color: rgb(62, 62, 62);
+                &:hover{
+                    color: black;
+                }
+            }
+        }
         .cartDetail {
             display: flex;
             border: 2px solid red;
