@@ -6,7 +6,6 @@ const mercadopago = require("mercadopago")
 mercadopago.configure({
     access_token: process.env.PROD_ACCESS_TOKEN,
 });
-
 salesController.createSale = async (req, res) => {
     const { client, products, shippingCost, subTotal, paymentMethod } = req.body
     const newSale = new Sale({
@@ -35,18 +34,17 @@ salesController.createSale = async (req, res) => {
             })
         });
         const response = await mercadopago.preferences.create(preference);
-// update data
-//
-products.map(async (product) => {
-    const course = await Course.findById(product._id)
-    if (course) {
-        await User.findByIdAndUpdate(client, { $push: { accessTo: course._id } })
-    }
-})
-await newSale.save()
-await User.findByIdAndUpdate(client, { $push: { purchases: newSale._id } })
-        console.log(response)
-        res.json(response)
+        // update data
+        //
+        // products.map(async (product) => {
+        //     const course = await Course.findById(product._id)
+        //     if (course) {
+        //         await User.findByIdAndUpdate(client, { $push: { accessTo: course._id } })
+        //     }
+        // })
+        // await newSale.save()
+        // await User.findByIdAndUpdate(client, { $push: { purchases: newSale._id } })
+        res.json({purchaseId: response.body.id})
     } else if (paymentMethod === "paypal") {
         updateData()
         res.json({ message: "paypal" })

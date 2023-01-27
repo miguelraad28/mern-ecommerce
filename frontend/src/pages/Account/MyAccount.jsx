@@ -13,6 +13,7 @@ const MyAccount = () => {
                 <div>
                     <Link to="/myaccount/purchases"><button>Mis compras</button></Link>
                     <Link to="/myaccount/courses"><button>Mis cursos</button></Link>
+                    <Link to="/myaccount/purchaseSucceeded">PURCHASE SUCCEEDED</Link>
                     <button onClick={() => logOut()}>Cerrar sesión</button>
                 </div>
             </div>

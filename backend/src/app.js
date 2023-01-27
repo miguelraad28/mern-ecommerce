@@ -25,5 +25,4 @@ app.use("/api/admin", verifyAdminToken, require("./routes/admin.routes.js"))
 
 app.post("/api/checkout", verifyToken, createSale)
 
-
 module.exports = app
