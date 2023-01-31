@@ -7,7 +7,7 @@ const { createSale } = require("./controllers/sales.controller.js");
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:3000", "https://api.mercadopago.com"],
+    origin: process.env.CORS_POLICY,
 }));
 app.use("/public", express.static(__dirname + "/public"))
 app.use("/private", verifyAccessToCourse, express.static(__dirname + "/private"))
