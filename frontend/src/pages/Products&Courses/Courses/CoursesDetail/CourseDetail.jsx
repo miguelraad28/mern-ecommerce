@@ -16,8 +16,8 @@ const CourseDetail = () => {
             <p>{course.name}</p>
             <p>{course.description}</p>
             <p>{course.price}</p>
-            <img style={{width: "300px"}} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/tumbnails/${course.tumbnail}`} />
-            <img style={{width: "300px"}} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${course.source[0]}`} />
+            <img style={{width: "300px"}} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/thumbnails/${course.source[0]}`} />
+            <img style={{width: "300px"}} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${course.source[1]}`} />
         </div> : null}
         </div>
     );

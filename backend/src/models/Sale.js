@@ -6,6 +6,11 @@ const saleSchema = new Schema({
         ref: "User",
         required: true
     },
+    status:{
+        type: String,
+        required: true,
+        default: "pending"
+    },
     products: [
         {
             _id: {

@@ -5,7 +5,6 @@ const Purchase = ({ _id, products, shippingCost, paymentMethod, subTotal, create
     createdAtModified = createdAtModified.split("-")
     createdAtModified = createdAtModified.reverse()
     createdAtModified = createdAtModified.join(" / ")
-    console.log(products)
     return (
         <div>
             <p>{_id}</p>

@@ -2,10 +2,9 @@ const salesController = {}
 const Sale = require("../models/Sale")
 const Course = require("../models/Course")
 const User = require("../models/User")
-const mercadopago = require("mercadopago")
-mercadopago.configure({
-    access_token: process.env.PROD_ACCESS_TOKEN,
-});
+const axios = require("axios")
+const mercadopago = require("../utils/mercadopago")
+
 salesController.createSale = async (req, res) => {
     const { client, products, shippingCost, subTotal, paymentMethod } = req.body
     const newSale = new Sale({
@@ -19,9 +18,13 @@ salesController.createSale = async (req, res) => {
         let preference = {
             id: newSale._id,
             items: [], back_urls: {
-                success: "http://localhost:3000/purchaseSucceeded",
-                failure: "https://www.freepik.com/free-vector/alert-concept-illustration_5423414.htm#query=failure&position=1&from_view=keyword",
-                pending: "https://www.shutterstock.com/es/search/pending-stamp"
+                success: "http://localhost:3000/purchaseFinished",
+                failure: "http://localhost:3000/purchaseFinished",
+                pending: "http://localhost:3000/purchaseFinished"
+            },
+            metadata: {
+                user_id: client,
+                sale_id: newSale._id
             },
             auto_return: "approved",
         }
@@ -34,34 +37,55 @@ salesController.createSale = async (req, res) => {
             })
         });
         const response = await mercadopago.preferences.create(preference);
-        // update data
-        //
-        // products.map(async (product) => {
-        //     const course = await Course.findById(product._id)
-        //     if (course) {
-        //         await User.findByIdAndUpdate(client, { $push: { accessTo: course._id } })
-        //     }
-        // })
-        // await newSale.save()
-        // await User.findByIdAndUpdate(client, { $push: { purchases: newSale._id } })
-        res.json({purchaseId: response.body.id})
+        await newSale.save()
+        await User.findByIdAndUpdate(client, { $push: { purchases: newSale._id } })
+        res.json({ purchaseId: response.body.id, redirectTo: response.body.init_point })
     } else if (paymentMethod === "paypal") {
-        updateData()
+
         res.json({ message: "paypal" })
     } else if (paymentMethod === "transfer") {
-        updateData()
+
         res.json({ message: "transfer" })
     }
 }
 
+salesController.verifyPayment = async (req, res) => {
+    const paymentId = req.mpData?.paymentId;
+    //    const preferenceId = req.mpData.preferenceId;
+    try {
+        const paymentResponse = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
+            headers: {
+                'Authorization': `Bearer ${process.env.MP_ACCESS_TOKEN}`
+            }
+        })
+        if (paymentResponse.data.status === "approved") {
+            const sale = await Sale.findByIdAndUpdate(paymentResponse.data.metadata.sale_id, { status: paymentResponse.data.status })
+            const { products } = sale
+            await products.map(async (product) => {
+                const course = await Course.findById(product._id)
+                const userBuyer = await User.findOne({ _id: paymentResponse.data.metadata.user_id })
+                if (userBuyer._doc.accessTo.includes(course._id)) {
+                    console.log("Ya se han dado accesos")
+                } else {
+                    await User.findByIdAndUpdate(paymentResponse.data.metadata.user_id, { $push: { accessTo: course._id } })
+                }
+            })
+            return res.json(paymentResponse.data.status)
+        } else {
+            return res.json(paymentResponse)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 salesController.getSales = async (req, res) => {
-    const sales = await Sale.find()
-    res.json(sales)
+    res.json(await Sale.find())
 }
 
 salesController.getSale = async (req, res) => {
-    const sale = await Sale.findById(req.params.saleId)
-    res.json(sale)
+    res.json(await Sale.findById(req.params.saleId))
 }
 
 module.exports = salesController

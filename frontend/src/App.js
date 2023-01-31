@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 import { AuthContext } from "./context/auth/AuthProvider";
 import "./scss/styles.scss";
 import Navbar from "./components/Navbar/Navbar";
@@ -16,31 +17,33 @@ import PublicRoutes from "./routes/PublicRoutes";
 import CoursesListContainer from "./pages/Products&Courses/Courses/CoursesListContainer";
 import CourseDetail from "./pages/Products&Courses/Courses/CoursesDetail/CourseDetail";
 import CartListContainer from "./pages/Cart/CartListContainer";
-import PurchaseSucceeded from "./pages/Account/MyPurchases/PurchaseSucceeded";
+import PurchaseWithQueryParams from "./pages/Cart/Purchase/PurchaseWithQueryParams";
 function App() {
   const { userLoggedIn } = useContext(AuthContext);
-  return (
 
+  const history = createBrowserHistory();
+
+  return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/inicio" element={<Home />} />
-        <Route path="/courses" element={<CoursesListContainer/>}/>
-        <Route path="/courses/:courseId" element={<CourseDetail/>}/>
+        <Route path="/courses" element={<CoursesListContainer />} />
+        <Route path="/courses/:courseId" element={<CourseDetail />} />
         <Route element={<PublicRoutes isAllowed={!!userLoggedIn} />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
         <Route element={<PrivateRoutes isAllowed={!!userLoggedIn} />}>
           <Route path="/myaccount" element={<MyAccount />} />
-          <Route path="/myaccount/purchaseSucceeded" element={<PurchaseSucceeded />} />
           <Route path="/myaccount/purchases" element={<MyPurchases />} />
           <Route path="/myaccount/courses" element={<MyCourses />} />
           <Route path="/myaccount/courses/:courseId" element={<MyCourse />} />
         </Route>
-        <Route path="/cart" element={<CartListContainer/>}/>
+        <Route path="/purchaseFinished" element={<PurchaseWithQueryParams history={history} />} />
+        <Route path="/cart" element={<CartListContainer />} />
       </Routes>
     </BrowserRouter>
   );

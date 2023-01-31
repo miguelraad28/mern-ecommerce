@@ -15,8 +15,6 @@ const CartListContainer = () => {
     const [proccessingPurchase, setProccessingPurchase] = useState(false);
     const [cartDetail, setCartDetail] = useState([]);
     const [preferenceId, setPreferenceId] = useState();
-    const [cargandoBoton, setCargandoBoton] = useState(false);
-    const [paymentMethodSelected, setPaymentMethodSelected] = useState(false);
     
     let purchaseDetail = {}
     const getCartDetail = async () => {
@@ -33,21 +31,28 @@ const CartListContainer = () => {
         setTotalAmount(auxTotalAmount.reduce((a, b) => a + b, 0))
     }
     const buyWithMP = async () => {
-        setPaymentMethodSelected(!paymentMethodSelected)
-        purchaseDetail = {
-            client: userLoggedIn._id, products: [{
-                _id: cartDetail[0]._id, name: cartDetail[0].name, quantity: 1, unitPrice: cartDetail[0].price, totalPrice: cartDetail[0].price
-            }], shippingCost: 0, paymentMethod: "mercadopago", subTotal: totalAmount
-        }
         setProccessingPurchase(true)
+        let productsToBuy = []
+        cartDetail.map(product => {
+            productsToBuy.push({
+                _id: product._id,
+                name: product.name,
+                quantity: 1,
+                unitPrice: product.price,
+                totalPrice: product.price
+            })
+        })
+        purchaseDetail = {
+            client: userLoggedIn._id, products: productsToBuy, shippingCost: 0, paymentMethod: "mercadopago", subTotal: totalAmount
+        }
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/checkout`, purchaseDetail, {
             headers: {
                 "x-access-token": JSON.parse(localStorage.getItem("x-access-token"))
             }
         })
+        console.log(res)
         setPreferenceId(res.data.purchaseId)
-        //window.location.replace(res.data.response.init_point);
-        setPaymentMethodSelected(!paymentMethodSelected)
+        window.location.replace(res.data.redirectTo);
     }
     useEffect(() => {
         if (cart.length > 0) getCartDetail()
@@ -57,11 +62,9 @@ const CartListContainer = () => {
             <div className='cartListContainer'>
                 {userLoggedIn ? <CartList cart={cart} cartDetail={cartDetail} totalAmount={totalAmount} /> : <div className='cartTitle'><h2>Debes iniciar sesión para añadir al carrito</h2><Link to="/login">Iniciá sesión acá</Link></div>}
             </div>
-            {/* {proccessingPurchase ? <div className='spinnerBackground'><Spinner /></div> : null} */}
+            {proccessingPurchase ? <div className='spinnerBackground'><Spinner /></div> : null}
             <div>
-                {cart.length > 0 ? (paymentMethodSelected ? null : <button onClick={() => buyWithMP()}>Mercado Pago</button>) : null}
-                {cargandoBoton ? <Spinner/>: null}
-                {proccessingPurchase ? <Mercadopago preferenceId={preferenceId} cargandoBoton={cargandoBoton} setCargandoBoton={setCargandoBoton}/> : null}
+                {cart.length < 1 ? null : <button onClick={() => buyWithMP()}>Mercado Pago</button>}
             </div>
         </div>
     );

@@ -8,9 +8,19 @@ const verifyToken = async (req, res, next) => {
     if (!token) return res.status(403).json({ message: "Debes iniciar sesión" })
     const decoded = jwt.verify(token, config.SECRET)
     const user = await User.findById(decoded.id)
-    req.user = user
     if (!user) return res.status(404).json({ message: "Tu usuario no ha sido encontrado, vuelve a iniciar sesión" })
-    next()
+    /* This if its meant to be in case the user
+    makes a purchases and then the react component
+    PurchaseFinished executes /api/checkout/verifyPayment */
+    if (req.body.paymentId && req.body.preferenceId) {
+        req.user = user
+        req.mpData = {paymentId: req.body.paymentId, preferenceId: req.body.preferenceId}
+        return next()
+    } else {
+        req.user = user
+        next()
+
+    }
 }
 
 const verifyAccessToCourse = async (req, res, next) => {
@@ -23,8 +33,8 @@ const verifyAccessToCourse = async (req, res, next) => {
     if (!user) return res.status(404).json({ message: "Tu usuario no ha sido encontrado, vuelve a iniciar sesión" })
     if (user.accessTo.includes(course)) {
         next()
-    }else{
-        return res.status(403).json({ message: "Lo siento, pero no tienes acceso a este curso "})
+    } else {
+        return res.status(403).json({ message: "Lo siento, pero no tienes acceso a este curso " })
     }
 }
 

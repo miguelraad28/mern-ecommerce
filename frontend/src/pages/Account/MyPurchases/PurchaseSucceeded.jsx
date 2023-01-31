@@ -1,14 +1,11 @@
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
-const PurchaseSucceeded = () => {
-    const [href, setHref] = useState();
-    useEffect(() => {
-        setHref(window.location.href)
-    }, [window.location.href]);
+const PurchaseSucceeded = ({queryParams}) => {
+    const { payment_id, status } = queryParams;
+    console.log(payment_id, status)
     return (
         <div>
             <h1>Purchase Succeeded</h1>
-            <h2>{href}</h2>
         </div>
     );
 }

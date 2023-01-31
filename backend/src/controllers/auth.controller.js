@@ -5,10 +5,10 @@ const User = require("../models/User")
 const Role = require("../models/Role");
 
 authController.register = async (req, res) => {
-    const { name, lastname, email, password, dni, roles } = req.body
+    const { name, surname, email, password, dni, roles } = req.body
     const newUser = new User({
         name,
-        lastname,
+        surname,
         email,
         password: await User.encryptPassword(password),
         dni,

@@ -13,7 +13,7 @@ const Register = () => {
     }
     
     const { name,
-        lastname,
+        surname,
         dni,
         email,
         password,
@@ -28,11 +28,11 @@ const Register = () => {
                     value={name}
                     name="name"
                     type="text" />
-                <label>Lastname</label>
+                <label>Surname</label>
                 <input
                     onChange={handleOnChange}
-                    value={lastname}
-                    name="lastname"
+                    value={surname}
+                    name="surname"
                     type="text" />
                 <label>Email</label>
                 <input

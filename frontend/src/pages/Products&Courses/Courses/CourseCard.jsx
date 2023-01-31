@@ -12,8 +12,8 @@ const CourseCard = ({ _id, name, description, price, offerPrice, source, tumbnai
             <p>{description}</p>
             <p>{price}</p>
             <p>{offerPrice}</p>
-            <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${source[0]}`} />
-            <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/tumbnails/${tumbnail}`} />
+            <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${source[1]}`} />
+            <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/thumbnails/${source[0]}`} />
             <div className="coursesButtons">
                 {userLoggedIn ?
                     (accessTo.includes(_id) ?
