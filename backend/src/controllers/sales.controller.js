@@ -18,7 +18,7 @@ salesController.createSale = async (req, res) => {
         let preference = {
             id: newSale._id,
             items: [], back_urls: {
-                success: "http://localhost:3000/purchaseFinished",
+                success: "https://mern-ecommerce-front.vercel.app/purchaseFinished",
                 failure: "http://localhost:3000/purchaseFinished",
                 pending: "http://localhost:3000/purchaseFinished"
             },
