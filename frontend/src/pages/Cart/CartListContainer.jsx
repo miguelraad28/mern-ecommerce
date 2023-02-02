@@ -64,7 +64,7 @@ const CartListContainer = () => {
             </div>
             {proccessingPurchase ? <div className='spinnerBackground'><Spinner /></div> : null}
             <div>
-                {cart.length < 1 ? null : <button onClick={() => buyWithMP()}>Mercado Pago</button>}
+                {userLoggedIn && cart.length > 0 ? <button onClick={() => buyWithMP()}>Mercado Pago</button> : null}
             </div>
         </div>
     );

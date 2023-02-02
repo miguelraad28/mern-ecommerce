@@ -61,14 +61,9 @@ salesController.verifyPayment = async (req, res) => {
         if (paymentResponse.data.status === "approved") {
             const sale = await Sale.findByIdAndUpdate(paymentResponse.data.metadata.sale_id, { status: paymentResponse.data.status })
             const { products } = sale
-            await products.map(async (product) => {
+            products.map(async (product) => {
                 const course = await Course.findById(product._id)
-                const userBuyer = await User.findOne({ _id: paymentResponse.data.metadata.user_id })
-                if (userBuyer._doc.accessTo.includes(course._id)) {
-                    console.log("Ya se han dado accesos")
-                } else {
-                    await User.findByIdAndUpdate(paymentResponse.data.metadata.user_id, { $push: { accessTo: course._id } })
-                }
+                await User.findByIdAndUpdate(paymentResponse.data.metadata.user_id, { $push: { accessTo: course._id } })
             })
             return res.json(paymentResponse.data.status)
         } else {
@@ -77,7 +72,6 @@ salesController.verifyPayment = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-
 }
 
 salesController.getSales = async (req, res) => {

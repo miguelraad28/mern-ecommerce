@@ -1,21 +1,28 @@
-import { React, createContext, useState, useEffect } from 'react';
+import { React, createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { CartContext } from '../cart/CartProvider';
+
 const AuthContext = createContext()
 const AuthProvider = (props) => {
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const autoLogIn = async() => {
-        if(localStorage.getItem("x-access-token")){
+    const {setCart, getCart} = useContext(CartContext);
+
+    const autoLogIn = async () => {
+        if (localStorage.getItem("x-access-token")) {
             const token = JSON.parse(localStorage.getItem("x-access-token"))
-            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/auth/autoLogIn`,{
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/auth/autoLogIn`, {
                 headers: {
                     "x-access-token": token
                 }
             })
-            if(res.data.sessionExpired){
+            if (res.data.sessionExpired) {
                 localStorage.removeItem("x-access-token")
                 alert("Sesión expirada")
-            }else{
-                setUserLoggedIn({...res.data.user})
+                setCart([])
+                localStorage.removeItem("cart")
+            } else {
+                setUserLoggedIn({ ...res.data.user })
+                getCart()
             }
         }
     }
@@ -26,7 +33,7 @@ const AuthProvider = (props) => {
         e.preventDefault()
         try {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, user)
-            setUserLoggedIn({...res.data.user})
+            setUserLoggedIn({ ...res.data.user })
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
         } catch (error) {
             alert(error)
@@ -36,8 +43,9 @@ const AuthProvider = (props) => {
         e.preventDefault()
         try {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, user)
-            setUserLoggedIn({...res.data.user})
+            setUserLoggedIn({ ...res.data.user })
             localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
+            getCart()
         } catch (error) {
             alert(error)
         }
@@ -45,6 +53,8 @@ const AuthProvider = (props) => {
     const logOut = async () => {
         setUserLoggedIn(false)
         localStorage.removeItem("x-access-token")
+        setCart([])
+        localStorage.removeItem("cart")
     }
 
     return (

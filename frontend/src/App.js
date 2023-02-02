@@ -18,6 +18,7 @@ import CoursesListContainer from "./pages/Products&Courses/Courses/CoursesListCo
 import CourseDetail from "./pages/Products&Courses/Courses/CoursesDetail/CourseDetail";
 import CartListContainer from "./pages/Cart/CartListContainer";
 import PurchaseWithQueryParams from "./pages/Cart/Purchase/PurchaseWithQueryParams";
+import WatchCourse from "./pages/Account/MyCourses/WatchCourse";
 function App() {
   const { userLoggedIn } = useContext(AuthContext);
 
@@ -40,7 +41,7 @@ function App() {
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/myaccount/purchases" element={<MyPurchases />} />
           <Route path="/myaccount/courses" element={<MyCourses />} />
-          <Route path="/myaccount/courses/:courseId" element={<MyCourse />} />
+          <Route path="/myaccount/courses/:courseId" element={<WatchCourse />} />
         </Route>
         <Route path="/purchaseFinished" element={<PurchaseWithQueryParams history={history} />} />
         <Route path="/cart" element={<CartListContainer />} />

@@ -1,15 +1,13 @@
-import { React, useEffect, useContext } from 'react';
+import { React, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../../../context/auth/AuthProvider';
+
 const PurchaseFinished = ({ queryParams }) => {
-    const { autoLogIn, userLoggedIn } = useContext(AuthContext);
     const verifyPayment = async (mpData) => {
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/checkout/verifyPayment`, mpData, {
             headers: {
                 "x-access-token": JSON.parse(localStorage.getItem("x-access-token"))
             }
         })
-        await autoLogIn()
         console.log(res.data)
     }
     useEffect(() => {

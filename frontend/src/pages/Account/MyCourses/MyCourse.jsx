@@ -1,20 +1,13 @@
-import { React, useState } from 'react';
-import WatchCourse from './WatchCourse';
+import { React } from 'react';
+import { Link } from 'react-router-dom';
 const MyCourse = ({ _id, name, description, source, tumbnail }) => {
-    const [watchingCourse, setWatchingCourse] = useState(false);
-    const watchCourse = () => {
-        setWatchingCourse(!watchingCourse)
-    }
     return (
-        <>
-            {watchingCourse ? <WatchCourse courseId={_id} source={source} tumbnail={tumbnail}/> :
-                <div>
-                    <p>{name}</p>
-                    <p>{description}</p>
-                    <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${source[1]}`} />
-                    <button onClick={() => watchCourse()}>VER CURSO</button>
-                </div>}
-        </>
+        <div>
+            <p>{name}</p>
+            <p>{description}</p>
+            <img style={{ width: "300px" }} src={`${process.env.REACT_APP_SERVER_URL}/public/courses/explanatoryVideos/${source[1]}`} />
+            <Link to={`/myaccount/courses/${_id}`}><button className='watchCourseButton'><i class="bi bi-play-circle-fill"></i> VER CURSO</button></Link>
+        </div>
     );
 }
 
