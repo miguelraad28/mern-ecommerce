@@ -45,7 +45,19 @@ const userSchema = new Schema({
             ref: "Role"
         }
     },
-
+    account: {
+        type: String,
+        required: true,
+        default: "pending"
+    },
+    accountConfirmation: {
+        confirmationCode: {
+            type: Number
+        },
+        confirmationCodeExpiresAt: {
+            type: Date
+        }
+    }
 }, {
     timestamps: true,
     versionKey: false

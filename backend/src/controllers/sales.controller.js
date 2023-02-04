@@ -65,7 +65,9 @@ salesController.verifyPayment = async (req, res) => {
                 const course = await Course.findById(product._id)
                 await User.findByIdAndUpdate(paymentResponse.data.metadata.user_id, { $push: { accessTo: course._id } })
             })
-            return res.json(paymentResponse.data.status)
+            const buyer = await User.findById(paymentResponse.data.metadata.user_id)
+            console.log(buyer)
+            return res.json(buyer)
         } else {
             return res.json(paymentResponse)
         }

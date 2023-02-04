@@ -1,6 +1,5 @@
 import { React, useState, useContext } from 'react';
-import { AuthContext } from './context/auth/AuthProvider';
-import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/auth/AuthProvider';
 const Login = () => {
     const { logIn } = useContext(AuthContext);
     const [user, setUser] = useState({});

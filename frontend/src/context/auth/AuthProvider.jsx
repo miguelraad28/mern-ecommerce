@@ -1,12 +1,13 @@
-import { React, createContext, useContext, useState, useEffect } from 'react';
+import { React, createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { CartContext } from '../cart/CartProvider';
+import Swal from 'sweetalert2';
 
 const AuthContext = createContext()
 const AuthProvider = (props) => {
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const {setCart, getCart} = useContext(CartContext);
-
+    const { setCart, getCart } = useContext(CartContext);
+    const [accountCreated, setAccountCreated] = useState(false);
     const autoLogIn = async () => {
         if (localStorage.getItem("x-access-token")) {
             const token = JSON.parse(localStorage.getItem("x-access-token"))
@@ -17,7 +18,7 @@ const AuthProvider = (props) => {
             })
             if (res.data.sessionExpired) {
                 localStorage.removeItem("x-access-token")
-                alert("Sesión expirada")
+                Swal.fire(res.data.message)
                 setCart([])
                 localStorage.removeItem("cart")
             } else {
@@ -26,15 +27,15 @@ const AuthProvider = (props) => {
             }
         }
     }
-    useEffect(() => {
-        autoLogIn()
-    }, []);
     const signUp = async (e, user) => {
         e.preventDefault()
         try {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, user)
-            setUserLoggedIn({ ...res.data.user })
-            localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
+            if(res.data.pending){
+                return setAccountCreated(true)
+            }else{
+                Swal.fire(res.data.message)
+            }
         } catch (error) {
             alert(error)
         }
@@ -43,11 +44,15 @@ const AuthProvider = (props) => {
         e.preventDefault()
         try {
             const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, user)
-            setUserLoggedIn({ ...res.data.user })
-            localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
-            getCart()
+            if (res.data.pending) {
+                Swal.fire(res.data.message)
+            } else {
+                setUserLoggedIn({ ...res.data.user })
+                localStorage.setItem("x-access-token", JSON.stringify(res.data.token))
+                getCart()
+            }
         } catch (error) {
-            alert(error)
+            console.log(error)
         }
     }
     const logOut = async () => {
@@ -56,9 +61,8 @@ const AuthProvider = (props) => {
         setCart([])
         localStorage.removeItem("cart")
     }
-
     return (
-        <AuthContext.Provider value={{ userLoggedIn, setUserLoggedIn, signUp, logIn, logOut, autoLogIn }}>
+        <AuthContext.Provider value={{ userLoggedIn, setUserLoggedIn, signUp, logIn, logOut, autoLogIn, accountCreated }}>
             {props.children}
         </AuthContext.Provider>
     );
