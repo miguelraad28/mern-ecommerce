@@ -6,7 +6,8 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: [process.env.CORS_POLICY_FRONT_END, process.env.CORS_POLICY_MP],
+    origin: "*",
+    //origin: [process.env.CORS_POLICY_FRONT_END, process.env.CORS_POLICY_MP],
 }));
 app.use("/public", express.static(__dirname + "/public"))
 app.use("/private", verifyAccessToCourse, express.static(__dirname + "/private"))
