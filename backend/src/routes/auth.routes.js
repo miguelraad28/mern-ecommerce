@@ -1,8 +1,8 @@
 const {Router} = require("express")
 const router = Router()
-const {checkEmail, checkDni, checkPassword} = require("../middlewares/verifySignUp")
+const {checkEmail, checkValidationToken, checkPassword} = require("../middlewares/verifySignUp")
 const {autoLogInTokenValidation} = require("../middlewares/verifyJWT")
-const {register, verifyEmail, resendConfirmationCode, login} = require("../controllers/auth.controller")
+const {register, verifyEmail, resendValidationCode, login} = require("../controllers/auth.controller")
 
 router.route("/autoLogIn")
 .get(autoLogInTokenValidation)
@@ -11,12 +11,12 @@ router.route("/login")
 .post(login)
 
 router.route("/register")
-.post(checkEmail, checkDni, checkPassword, register)
+.post(checkEmail, checkPassword, register)
 
 router.route("/verifyEmail")
-.post(verifyEmail)
+.post(checkValidationToken, verifyEmail)
 
-router.route("/resendConfirmationCode")
-.post(resendConfirmationCode)
+router.route("/resendValidationCode")
+.post(resendValidationCode)
 
 module.exports = router

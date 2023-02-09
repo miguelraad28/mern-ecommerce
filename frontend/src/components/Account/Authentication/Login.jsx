@@ -10,31 +10,35 @@ const Login = () => {
             [e.target.name]: e.target.value
         })
     }
-    
-    const { 
+
+    const {
         email,
         password,
-        } = user
+    } = user
     return (
-        <div className='logInForm'>
-            <h1>Login</h1>
+
+        <div className='logInForm' >
+            <h2>INICIAR SESIÓN</h2>
             <form onSubmit={(e) => logIn(e, user)} style={{ display: "flex", flexDirection: "column", }}>
                 <label>Email</label>
                 <input
                     onChange={handleOnChange}
                     value={email}
                     name="email"
+                    required
                     type="email" />
-                <label>Password</label>
+                <label>Contraseña</label>
                 <input
                     onChange={handleOnChange}
                     value={password}
                     name="password"
+                    required
                     type="password" />
-                <button>Log in</button>
+                <button type='submit' className='pinkButton'>INICIAR</button>
             </form>
-            
+
         </div>
+
     );
 }
 

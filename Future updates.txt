@@ -1,0 +1,29 @@
+
+# No almacenar el role.name en el auth context ni en el doc del usuario.
+
+## Cuando se intente acceder al panel de Administrador, solo enviar el ID del usuario en AuthContext y a través del componente <PrivateAdminRoutes/> Enviar una petición al servidor para validar con la collection de Roles y verificar que sea administrador, si es true, return <Outlet/>
+
+# Currency context y validación de país por ip.
+
+## Cada producto/curso tendra su price, offerPrice (ARS) y priceUSD, offerPriceUSD seteados manualmente y no por cambio de divisa.
+## Cuando un ingrese, validar la IP; si es de Argentina, el currency será ARS y si es de otro país USD, obviamente con su respectivo botón para cambiar el tipo de moneda.
+## En caso de ser ARS, el listado de productos, carritos y precios enviados a las API de pagos serán seleccionadas en ARS (price || offerPrice en caso de estar en oferta). En caso de estar en USD priceUSD || offerPriceUSD
+
+# Añadir datos faltantes en el Course Model
+
+## Como por ejemplo
+### Nivel de complejidad del curso
+### Ventas (Dato que luego puede ser utilizado para mostrar la cantidad de alumnos que ha tenido ese curso)
+### Categoría y Subcategoría. Por ejemplo Categoria: Ilustración || Ilustración digital, Subcategoría: Mazos de cartas || Cuadros
+
+# Autores de los cursos para una posible escalabilidad de integración de creadores de contenido en la plataforma
+
+
+
+
+
+
+
+
+
+# VERIFICAR Y DESINSTALAR LIBRERÍAS EN DESUSO.

@@ -12,7 +12,7 @@ const VerifyEmailWithQueryParams = ({ history, userLoggedIn }) => {
     }, [location]);
     return (
         <>
-            {userLoggedIn ? <Navigate to="/myaccount" /> : (location.search !== "" ? <VerifyEmail queryParams={queryParams} /> : <Navigate to="/" />)}
+            {userLoggedIn ? <Navigate to="/myaccount" /> : (location.search.includes("validationToken") ? <VerifyEmail queryParams={queryParams} /> : <Navigate to="/" />)}
         </>
     );
 }

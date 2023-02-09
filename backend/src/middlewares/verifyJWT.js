@@ -53,7 +53,7 @@ const autoLogInTokenValidation = async (req, res, next) => {
     const token = req.headers["x-access-token"]
     jwt.verify(token, config.SECRET, async function (err, decoded) {
         if (err) {
-            res.json({ err: err, sessionExpired: true })
+            res.json({ message: "Sesión expirada", err: err, pending: true })
         } else {
             req.userId = decoded.id
             const userFound = await User.findOne({ _id: req.userId })

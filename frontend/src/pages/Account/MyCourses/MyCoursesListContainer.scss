@@ -1,0 +1,90 @@
+.myCoursesListContainer {
+    background-color: white;
+    margin: 0 5%;
+    margin-top: 50px;
+    padding: 15px;
+
+    // PROVISIONAL
+    img {
+        border: 1px solid red;
+        width: 100%;
+    }
+
+    .lastCourseAdquiredContainer {
+        display: grid;
+        grid-template-columns: auto;
+        margin: auto;
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgb(192, 192, 192);
+
+        .lastCourseAdquiredText {
+            p {
+                padding-bottom: 15px;
+                font-size: 1.2em;
+                font-weight: 500;
+                text-align: center;
+            }
+        }
+
+        .lastCourseAdquiredData {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+
+            .lastCourseAdquiredSourceAndButton {
+                max-width: 50%;
+            }
+
+            .lastCourseAdquiredNameAndDescription {
+                p:nth-child(1) {
+                    font-size: 1em;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+                p:nth-child(2){
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+
+    .myCoursesList {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+// Boton para ir a ver el curso
+.watchCourseButton {
+    text-decoration: none;
+    button {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    p {
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    i {
+        margin-right: 5px;
+        transition: transform 0.5s ease, scale 0.5s ease;
+        transform: translateX(0);
+    }
+
+    button:hover {
+        p {
+            transform: translateX(-10px);
+            opacity: 0;
+        }
+
+        i {
+            transition: 0.5s;
+            transform: translateX(35px);
+            scale: 1.5;
+        }
+    }
+}

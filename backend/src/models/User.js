@@ -19,11 +19,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    dni: {
-        type: Number,
-        required: true,
-        unique: true
-    },
     purchases: [
         {
             type: Schema.Types.ObjectId,

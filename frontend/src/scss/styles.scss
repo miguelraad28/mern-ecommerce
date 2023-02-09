@@ -1,15 +1,18 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
 // font-family: 'Montserrat', sans-serif;
 * {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
 }
-#root{
+
+#root {
     height: 2000px;
     background-color: rgb(240, 240, 240);
 }
+
 .coursesListContainer,
 .logInForm,
 .signUpForm {
@@ -21,9 +24,18 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: white;
+    padding: 25px 10vw;
+    max-width: fit-content;
+    margin: auto;
+    margin-top: 50px;
+
+    h2 {
+
+        margin-bottom: 15px;
+    }
 
     form {
-        margin: auto;
         max-width: 500px;
 
         label {
@@ -33,14 +45,16 @@
 
         input {
             font-size: 1em;
-            border-radius: 8px;
-            border: 1px solid gray;
             padding: 5px 10px;
             margin-bottom: 10px;
+            border: 0;
+            background-color: rgb(240, 240, 240);
 
             &:focus {
-                border: 1px solid black;
+                outline: 0;
+                box-shadow: inset 0 0 0 1px rgb(192, 192, 192);
             }
+
         }
 
         input[type='password'] {
@@ -50,37 +64,106 @@
     }
 }
 
-.seeMyCoursesButton,
-.addToCartButton,
-.deleteFromCartButton,
-.watchCourseButton{
+.greenButton,
+.redButton,
+.pinkButton,
+.purpleButton,
+.skyblueButton,
+.blueButton,
+.orangeButton {
     cursor: pointer;
     padding: 7px 12px;
     border: 0;
+    font-size: 1em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.seeMyCoursesButton{
+
+.seeMyCoursesButton {
     background-color: rgb(255, 134, 134);
-    &:hover{
+
+    &:hover {
         background-color: rgb(255, 163, 163);
     }
 }
-.addToCartButton{
+
+.addToCartButton {
     background-color: rgb(157, 255, 127);
-    &:hover{
+
+    &:hover {
         background-color: rgb(188, 255, 168);
     }
 }
-.deleteFromCartButton{
+
+.deleteFromCartButton {
     color: white;
     background-color: rgb(255, 0, 0);
-    &:hover{
+
+    &:hover {
         background-color: rgb(255, 71, 71);
     }
 }
-.watchCourseButton{
+
+.greenButton {
+    background-color: rgb(155, 255, 124);
+
+    &:hover {
+        background-color: rgb(114, 255, 71);
+    }
+}
+
+.pinkButton {
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 152, 229);
-    &:hover{
-        background-color: rgb(255, 124, 222);
+    background-color: rgb(255, 154, 215);
+
+    &:hover {
+        background-color: rgb(255, 121, 201);
+    }
+}
+
+.redButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 48, 48);
+
+    &:hover {
+        background-color: rgb(255, 0, 0);
+    }
+}
+
+.purpleButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(228, 21, 255);
+
+    &:hover {
+        background-color: rgb(205, 0, 232);
+    }
+}
+
+.skyblueButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(74, 192, 255);
+
+    &:hover {
+        background-color: rgb(102, 202, 255);
+    }
+}
+
+.blueButton {
+    color: rgb(255, 255, 255);
+    background-color: #276fff;
+
+    &:hover {
+        background-color: rgb(68, 130, 255);
+    }
+}
+
+.orangeButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 152, 49);
+
+    &:hover {
+        background-color: rgb(255, 167, 80);
     }
 }

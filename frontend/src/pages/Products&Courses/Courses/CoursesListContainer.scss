@@ -9,10 +9,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px;
+        padding: 15px;
 
         img {
-            width: 100%;
+            width: calc(100% + 30px);
+            translate: 0 -15px;
             border: 1px solid brown;
             cursor: pointer;
         }
@@ -21,8 +22,11 @@
             color: black;
             text-decoration: none;
             max-width: 100%;
+            
         }
-
+        .courseName, .courseDescription{
+            translate: 0 -10px;
+        }
         .courseName {
             text-transform: uppercase;
             font-size: 1.3em;
@@ -37,7 +41,7 @@
 
             &:hover {
                 cursor: pointer;
-                color: rgb(255, 109, 201);
+                color: rgb(255, 0, 153);
                 text-decoration: underline;
             }
         }
@@ -90,7 +94,7 @@
                 color: red;
                 font-style: italic;
                 width: 100%;
-                margin: 4px 0;
+                padding: 8px 0;
             }
 
             .courseButtons {
@@ -105,7 +109,7 @@
                 a,
                 button {
                     width: 100%;
-                    font-size: 1.15em;
+                    font-size: 1em;
                 }
             }
 

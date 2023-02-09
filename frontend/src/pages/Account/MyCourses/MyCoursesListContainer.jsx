@@ -1,9 +1,17 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-import MyCourse from './MyCourse';
-const MyCourses = () => {
-    const [myCourses, setMyCourses] = useState();
+import Spinner from '../../../components/Spinner/Spinner';
+import { useLocation } from 'react-router-dom';
+import MyCoursesList from './MyCoursesList';
+import "./MyCoursesListContainer.scss";
 
+const MyCoursesListContainer = () => {
+    const [myCourses, setMyCourses] = useState();
+    const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
     const getMyCourses = async () => {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/myAccount/courses`, {
             headers: {
@@ -16,10 +24,10 @@ const MyCourses = () => {
         getMyCourses()
     }, []);
     return (
-        <div>
-            {myCourses ? myCourses.map(myCourse => <MyCourse key={myCourse._id} {...myCourse}/>): <h1>Cargando</h1>}
+        <div className='myCoursesListContainer'>
+            {myCourses ? <MyCoursesList myCourses={myCourses}/> : <Spinner />}
         </div>
     );
 }
 
-export default MyCourses;
+export default MyCoursesListContainer;

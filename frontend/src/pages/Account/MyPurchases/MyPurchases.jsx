@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import Purchase from './Purchase';
+import Spinner from '../../../components/Spinner/Spinner';
 
 const MyPurchases = () => {
     
@@ -18,7 +19,8 @@ const MyPurchases = () => {
     }, []);
     return (
         <div>
-            {purchases ? purchases.map(purchase => <Purchase  key={purchase._id} {...purchase} />) : <h1>cargando</h1>}
+            <h1>Mis compras</h1>
+            {purchases ? purchases.map(purchase => <Purchase  key={purchase._id} {...purchase} />) : <Spinner/>}
         </div>
     );
 }

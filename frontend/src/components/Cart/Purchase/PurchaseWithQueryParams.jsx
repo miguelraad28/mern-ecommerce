@@ -11,8 +11,7 @@ const PurchaseWithQueryParams = ({ history }) => {
         const newQueryParams = queryString.parse(location.search);
         setQueryParams(newQueryParams);
         history.replace({ search: '' });
-        console.log(queryParams)
-    }, [location]);
+    }, [location, history]);
     return (
         <>
             <PurchaseFinished queryParams={queryParams} />

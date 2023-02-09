@@ -2,9 +2,11 @@ import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.scss";
 import { AuthContext } from '../../context/auth/AuthProvider';
+import { CartContext } from '../../context/cart/CartProvider';
 
 const Navbar = () => {
     const { userLoggedIn } = useContext(AuthContext)
+    const { cart } = useContext(CartContext)
     return (
         <nav>
             <div className='navbarNavigation'>
@@ -16,12 +18,12 @@ const Navbar = () => {
             </div>
             <div className='navbarButtons'>
                 {userLoggedIn ?
-                    <Link className='myAccountIcon' to="/myaccount"><i className="bi bi-person-circle"></i></Link>
+                    <Link to="/myaccount"><i className="bi bi-person-circle"></i></Link>
                     :
                     <>
-                        <Link className="logInButton" to="/login"><button>Iniciar</button></Link>
-                        <Link className="signUpButton" to="/register"><button>Registrarme</button></Link></>}
-                <Link to="/cart">Cart</Link>
+                        <Link to="/login"><button className='pinkButton buttonLogInAndSignUp'>INICIAR</button></Link>
+                        <Link to="/register"><button className='purpleButton buttonLogInAndSignUp'>CREAR CUENTA</button></Link></>}
+                <Link to="/cart"><div className='cartIcon'><i className={cart.length < 1 ? "bi bi-basket" : "bi bi-basket-fill"}></i>{cart.length > 0 ? <span><p>{cart.length}</p></span> : null}</div></Link>
             </div>
         </nav>
     );

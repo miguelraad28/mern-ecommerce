@@ -1,4 +1,4 @@
-import { React, useContext, useState } from 'react';
+import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/auth/AuthProvider';
 import { CartContext } from '../../../context/cart/CartProvider';
@@ -21,10 +21,10 @@ const CourseCard = ({ _id, name, description, price, offerPrice, source }) => {
                 <div className='courseButtons'>
                     {userLoggedIn ?
                         (accessTo.includes(_id) ?
-                            <Link to="/myaccount/courses"><button className='seeMyCoursesButton' ><i class="bi bi-archive-fill"></i>VER MIS CURSOS</button></Link>
+                            <Link to="/myaccount/courses"><button className='pinkButton' ><i class="bi bi-archive-fill"></i>VER MIS CURSOS</button></Link>
                             :
-                            <button className={cart.includes(_id) ? "deleteFromCartButton" : 'addToCartButton'} onClick={cart.includes(_id) ? () => substractFromCart(_id) : () => addToCart(_id)}>{cart.includes(_id) ? <><i class="bi bi-cart-dash-fill"></i>ELIMINAR DEL CARRITO</> : <><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</>}</button>)
-                        : <button className='addToCartButton' onClick={() => askToLogIn()}><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</button>}
+                            <button className={cart.includes(_id) ? "redButton" : 'greenButton'} onClick={cart.includes(_id) ? () => substractFromCart(_id) : () => addToCart(_id)}>{cart.includes(_id) ? <><i class="bi bi-cart-dash-fill"></i>ELIMINAR DEL CARRITO</> : <><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</>}</button>)
+                        : <button className='greenButton' onClick={() => askToLogIn()}><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</button>}
                 </div>
             </div>
         </div>

@@ -7,10 +7,8 @@ const CartProvider = (props) => {
     const getCart = () => {
         if (localStorage.getItem("cart")) {
             const auxCart = JSON.parse(localStorage.getItem("cart"))
-            console.log(auxCart)
             setCart(auxCart)
         }
-        console.log(cart)
     }
 const addToCart = (_id) => {
     if (cart.includes(_id)) {

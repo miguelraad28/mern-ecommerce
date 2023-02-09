@@ -18,10 +18,10 @@
     .loadingSpinner {
         width: 50px;
         height: 50px;
-        border: 8px solid rgba(255, 56, 209, 0.772);
+        border: 8px solid rgb(255, 0, 153);
         border-radius: 50%;
-        border-left-color: rgba(128, 128, 128, 0.345);
-        border-bottom-color: rgba(128, 128, 128, 0.345);
+        border-left-color: rgba(128, 128, 128, 0.127);
+        border-bottom-color: rgba(128, 128, 128, 0.127);
         animation: spin 1s infinite;
     }
 }

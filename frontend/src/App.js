@@ -8,20 +8,21 @@ import Login from "./components/Account/Authentication/Login";
 import Register from "./components/Account/Authentication/Register";
 import MyAccount from "./pages/Account/MyAccount";
 import MyPurchases from "./pages/Account/MyPurchases/MyPurchases";
-import MyCourses from "./pages/Account/MyCourses/MyCourses";
+import MyCoursesListContainer from "./pages/Account/MyCourses/MyCoursesListContainer";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Home from "./pages/Home/Home";
 import PageNotFound from "./PageNotFound";
 import PublicRoutes from "./routes/PublicRoutes";
 import CoursesListContainer from "./pages/Products&Courses/Courses/CoursesListContainer";
 import CourseDetail from "./pages/Products&Courses/Courses/CoursesDetail/CourseDetail";
-import CartListContainer from "./pages/Cart/CartListContainer";
-import PurchaseWithQueryParams from "./pages/Cart/Purchase/PurchaseWithQueryParams";
+import CartListContainer from "./components/Cart/CartListContainer";
+import PurchaseWithQueryParams from "./components/Cart/Purchase/PurchaseWithQueryParams";
 import WatchCourse from "./pages/Account/MyCourses/WatchCourse";
 import VerifyEmailWithQueryParams from "./components/Account/VerifyEmail/VerifyEmailWithQueryParams";
 function App() {
   const [loadingSession, setLoadingSession] = useState(true);
   const { userLoggedIn, autoLogIn } = useContext(AuthContext);
+
   useEffect(() => {
     autoLogIn().then(() => setLoadingSession(false))
   }, []);
@@ -42,7 +43,7 @@ function App() {
         <Route element={<PrivateRoutes isAllowed={!!userLoggedIn} loadingSession={loadingSession} />}>
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/myaccount/purchases" element={<MyPurchases />} />
-          <Route path="/myaccount/courses" element={<MyCourses />} />
+          <Route path="/myaccount/courses" element={<MyCoursesListContainer />} />
           <Route path="/myaccount/courses/:courseId" element={<WatchCourse />} />
         </Route>
         <Route path="/purchaseFinished" element={<PurchaseWithQueryParams history={history} />} />

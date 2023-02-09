@@ -1,8 +1,7 @@
 import { React, useState, useContext } from 'react';
 import { AuthContext } from '../../../context/auth/AuthProvider';
-import AccountCreated from './AccountCreated';
 const Register = () => {
-    const { signUp, accountCreated } = useContext(AuthContext);
+    const { signUp } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const handleOnChange = (e) => {
         e.preventDefault()
@@ -14,56 +13,46 @@ const Register = () => {
 
     const { name,
         surname,
-        dni,
         email,
         password,
-        roles } = user
+    } = user
     return (
-        <>
-            {accountCreated ? <AccountCreated /> : <div className='signUpForm'>
-                <h1>Register</h1>
-                <form onSubmit={(e) => signUp(e, user)} style={{ display: "flex", flexDirection: "column", }}>
-                    <label>Name</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={name}
-                        name="name"
-                        type="text" />
-                    <label>Surname</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={surname}
-                        name="surname"
-                        type="text" />
-                    <label>Email</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={email}
-                        name="email"
-                        type="email" />
-                    <label>Password</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={password}
-                        name="password"
-                        type="password" />
-                    <label>DNI</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={dni}
-                        name="dni"
-                        type="number" />
-                    <label>Rol</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={roles}
-                        name="roles"
-                        type="text" />
-                    <button type='submit'>Register</button>
-                </form>
-            </div>
-            }
-        </>
+
+        <div className='signUpForm'>
+            <h2>CREAR CUENTA</h2>
+            <form onSubmit={(e) => signUp(e, user)} style={{ display: "flex", flexDirection: "column", }}>
+                <label>Nombre</label>
+                <input
+                    onChange={handleOnChange}
+                    value={name}
+                    name="name"
+                    required
+                    type="text" />
+                <label>Apellido</label>
+                <input
+                    onChange={handleOnChange}
+                    value={surname}
+                    name="surname"
+                    required
+                    type="text" />
+                <label>Email</label>
+                <input
+                    onChange={handleOnChange}
+                    value={email}
+                    name="email"
+                    required
+                    type="email" />
+                <label>Contraseña</label>
+                <input
+                    onChange={handleOnChange}
+                    value={password}
+                    name="password"
+                    required
+                    type="password" />
+                <button type='submit' className='purpleButton'>REGISTRARME</button>
+            </form>
+        </div>
+
     );
 }
 
