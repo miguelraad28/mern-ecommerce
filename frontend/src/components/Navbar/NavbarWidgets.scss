@@ -1,0 +1,56 @@
+nav {
+    a:has(i) {
+        font-size: 1.5em;
+        color: rgb(0, 0, 0);
+
+        &:hover {
+            color: rgb(255, 3, 154);
+        }
+
+
+    }
+
+    .cartIcon {
+
+        .bi-basket,
+        .bi-basket-fill {
+            position: relative;
+
+            &:before {
+                margin: 0 15px 0 5px;
+                translate: 0 -2px;
+            }
+        }
+
+        span {
+            top: 2px;
+            right: 0px;
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            translate: -7px 1px;
+            background-color: rgb(255, 3, 154);
+        }
+
+        p {
+            font-size: 0.7em;
+            color: rgb(255, 255, 255);
+
+        }
+
+        &:hover {
+            span {
+                background-color: rgb(255, 255, 255);
+            }
+
+            p {
+                color: rgb(255, 3, 154);
+            }
+        }
+
+    }
+}

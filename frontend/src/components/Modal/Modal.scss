@@ -1,0 +1,65 @@
+.modalBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.215);
+    overflow: hidden;
+
+    .modalContainer {
+        background-color: white;
+        max-width: 800px;
+        padding: 15px;
+        margin: 0 20px;
+
+        .titleAndCloseButton {
+            position: relative;
+
+            h2 {
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            button {
+                padding: 5px 9px;
+                position: absolute;
+                z-index: 2;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .modalVideoContainer {
+            margin-top: 12px;
+
+            video {
+                width: 100%;
+                border: 1px solid red;
+            }
+        }
+
+        .modalDataGrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 5px;
+            & > div:first-child {
+                text-align: start;
+            }
+            & > div:last-child{
+                text-align: end;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                button{
+                    max-width: fit-content;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}

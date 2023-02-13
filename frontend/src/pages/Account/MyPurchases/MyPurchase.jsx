@@ -1,12 +1,13 @@
 import React from 'react';
+import Spinner from '../../../components/Spinner/Spinner';
 
-const Purchase = ({ _id, products, shippingCost, paymentMethod, subTotal, createdAt }) => {
+const MyPurchase = ({ _id, products, shippingCost, paymentMethod, subTotal, createdAt }) => {
     let createdAtModified = createdAt.slice(0, 10)
     createdAtModified = createdAtModified.split("-")
     createdAtModified = createdAtModified.reverse()
     createdAtModified = createdAtModified.join(" / ")
     return (
-        <div>
+        <div className='myPurchaseContainer'>
             <p>{_id}</p>
             <p>{createdAtModified}</p>
             <p>{subTotal}</p>
@@ -16,12 +17,11 @@ const Purchase = ({ _id, products, shippingCost, paymentMethod, subTotal, create
                         <p>{product.name}</p>
                         <p>{product.unitPrice}</p>
                     </>)
-                )) : <h1> cargando...</h1>}
+                )) : <Spinner/>}
             </div>
-            <p>{shippingCost}</p>
             <p>{paymentMethod}</p>
         </div>
     );
 }
 
-export default Purchase;
+export default MyPurchase;

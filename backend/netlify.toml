@@ -1,8 +1,0 @@
-[build]
-  command = "node index.js"
-  functions = "backend"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/index"
-  status = 200

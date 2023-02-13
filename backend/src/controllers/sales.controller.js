@@ -14,7 +14,7 @@ salesController.createSale = async (req, res) => {
         subTotal,
         paymentMethod
     })
-    if (paymentMethod === "mercadopago") {
+    if (paymentMethod === "mercado pago") {
         let preference = {
             id: newSale._id,
             items: [], back_urls: {

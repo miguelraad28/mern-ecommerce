@@ -1,12 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import MyCoursesList from './MyCoursesList';
 import "./MyCoursesListContainer.scss";
 
 const MyCoursesListContainer = () => {
-    const [myCourses, setMyCourses] = useState();
+    const [myCourses, setMyCourses] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -24,8 +24,16 @@ const MyCoursesListContainer = () => {
         getMyCourses()
     }, []);
     return (
-        <div className='myCoursesListContainer'>
-            {myCourses ? <MyCoursesList myCourses={myCourses}/> : <Spinner />}
+        <div className='container'>
+            <div className='myCoursesListContainer'>
+                {console.log(myCourses)}
+                {myCourses ? (myCourses.length > 0 ? <MyCoursesList myCourses={myCourses} /> :
+                    <div className='emptySection'>
+                        <h2>NO HAS ADQUIRIDO NINGÚN CURSO AÚN</h2>
+                        <Link to="/courses"><button className='pinkButton'>VER CURSOS</button></Link>
+                    </div>
+                ) : <Spinner />}
+            </div>
         </div>
     );
 }

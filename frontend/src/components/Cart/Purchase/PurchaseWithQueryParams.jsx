@@ -1,10 +1,12 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useContext } from 'react';
 import queryString from 'query-string';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 import PurchaseFinished from './PurchaseFinished';
+import { AuthContext } from '../../../context/auth/AuthProvider';
 
 const PurchaseWithQueryParams = ({ history }) => {
     const [queryParams, setQueryParams] = useState(false);
+    const {userLoggedIn} = useContext(AuthContext);
     const location = useLocation();
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const PurchaseWithQueryParams = ({ history }) => {
     }, [location, history]);
     return (
         <>
-            <PurchaseFinished queryParams={queryParams} />
+            {userLoggedIn ? (location.search.includes("payment_id") ? <PurchaseFinished queryParams={queryParams} /> : <Navigate to="/" />) : <Navigate to="/"/>}
         </>
     );
 }

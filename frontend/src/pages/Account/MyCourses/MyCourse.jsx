@@ -4,7 +4,7 @@ import "./MyCourse.scss"
 const MyCourse = ({ _id, name, source }) => {
     return (
         <div className='myCourseDetail'>
-            <p>{name}</p>
+            <h3>{name}</h3>
             <img src={`${process.env.REACT_APP_SERVER_URL}/public/courses/thumbnails/${source[0]}`} />
             <Link to={`/myaccount/courses/${_id}`} className="watchCourseButton"><button className='pinkButton'><i className="bi bi-play-circle-fill"></i><p>VER CURSO</p></button></Link>
         </div>

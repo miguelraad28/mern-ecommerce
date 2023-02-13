@@ -1,8 +1,9 @@
 import { React, useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { Navigate, useLocation } from 'react-router-dom';
-import VerifyEmail from './VerifyEmail';
-const VerifyEmailWithQueryParams = ({ history }) => {
+import VerifyPasswordToken from './VerifyPasswordToken';
+
+const VerifyPasswordTokenWithQueryParams = ({ history }) => {
     const [queryParams, setQueryParams] = useState(false);
     const location = useLocation();
     useEffect(() => {
@@ -12,9 +13,9 @@ const VerifyEmailWithQueryParams = ({ history }) => {
     }, [location]);
     return (
         <>
-            {location.search.includes("validationToken") ? <VerifyEmail queryParams={queryParams} /> : <Navigate to="/" />}
+            {location.search.includes("validationToken") ? <VerifyPasswordToken queryParams={queryParams} /> : <Navigate to="/" />}
         </>
     );
 }
 
-export default VerifyEmailWithQueryParams;
+export default VerifyPasswordTokenWithQueryParams;

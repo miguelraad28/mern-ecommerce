@@ -1,15 +1,12 @@
 const {Router} = require("express")
 const router = Router()
 const {checkEmail, checkValidationToken, checkPassword} = require("../middlewares/verifySignUp")
-const {autoLogInTokenValidation} = require("../middlewares/verifyJWT")
-const {register, verifyEmail, resendValidationCode, login} = require("../controllers/auth.controller")
+const {autoLogInTokenValidation, verifyToken} = require("../middlewares/verifyJWT")
+const {register, verifyEmail, resendValidationCode, login, recoverPassword, recoverSession, changePassword} = require("../controllers/auth.controller")
 
-router.route("/autoLogIn")
-.get(autoLogInTokenValidation)
 
-router.route("/login")
-.post(login)
 
+// Registration routes
 router.route("/register")
 .post(checkEmail, checkPassword, register)
 
@@ -18,5 +15,24 @@ router.route("/verifyEmail")
 
 router.route("/resendValidationCode")
 .post(resendValidationCode)
+
+// Login Routes
+
+router.route("/autoLogIn")
+.get(autoLogInTokenValidation)
+
+router.route("/login")
+.post(login)
+
+// Change Password & Email Routes
+
+router.route("/recoverPassword")
+.post(recoverPassword)
+
+router.route("/recoverSession")
+.post(recoverSession)
+
+router.route("/changePassword")
+.post(verifyToken, changePassword)
 
 module.exports = router

@@ -1,0 +1,64 @@
+.logInForm,
+.signUpForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    width: calc(200px + 6vw);
+
+    h2 {
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid gray;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        label {
+            margin-bottom: 3px;
+            margin-left: 8px;
+        }
+
+        input {
+            font-size: 1em;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border: 0;
+            background-color: rgb(240, 240, 240);
+
+            &:focus {
+                outline: 0;
+                box-shadow: inset 0 0 0 1px rgb(192, 192, 192);
+            }
+
+        }
+
+        input[type='password'] {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
+
+    .forgotPasswordContainer {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+
+        a {
+            text-decoration: none;
+            color: red;
+            font-style: italic;
+        }
+
+        div:first-child {
+            margin-bottom: 8px;
+        }
+    }
+}

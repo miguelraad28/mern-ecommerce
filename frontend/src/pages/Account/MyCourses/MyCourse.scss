@@ -1,12 +1,35 @@
-.myCourseDetail {
-    margin-top: 10px;
-    p{
-
-        text-transform: uppercase;
-        font-size: 1em;
-        font-weight: 500;
-        text-align: center;
-        margin-bottom: 3px;
+.glider-contain {
+    .glider-prev {
+        translate: 15px 18px;
+        color: #666;
+        &:hover{
+            color: #3c3c3c;
+        }
     }
-    
+    .glider-next{
+        translate: -15px 18px;
+        color: #666;
+        &:hover{
+            color: #3c3c3c;
+        }
+    }
+}
+
+.myCourseDetail {
+    padding-top: 12px;
+    gap: 10px;
+    margin: 0 5px;
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+
+    h3 {
+        text-align: center;
+        text-transform: uppercase;
+        padding-bottom: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 }

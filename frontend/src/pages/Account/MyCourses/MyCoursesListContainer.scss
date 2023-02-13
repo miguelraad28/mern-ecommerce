@@ -1,41 +1,34 @@
 .myCoursesListContainer {
     background-color: white;
-    margin: 0 5%;
-    margin-top: 50px;
+    max-width: 1000px;
     padding: 15px;
 
     // PROVISIONAL
     img {
         border: 1px solid red;
-        width: 100%;
     }
 
     .lastCourseAdquiredContainer {
         display: grid;
         grid-template-columns: auto;
         margin: auto;
-        padding-bottom: 5px;
         border-bottom: 1px solid rgb(192, 192, 192);
-
-        .lastCourseAdquiredText {
-            p {
-                padding-bottom: 15px;
-                font-size: 1.2em;
-                font-weight: 500;
-                text-align: center;
-            }
-        }
-
         .lastCourseAdquiredData {
             display: flex;
             justify-content: center;
             gap: 25px;
-
+            padding: 12px 0;
             .lastCourseAdquiredSourceAndButton {
                 max-width: 50%;
+                img{
+                    width: 100%;
+                }
             }
 
             .lastCourseAdquiredNameAndDescription {
+                h3{
+                    text-transform: uppercase;
+                }
                 p:nth-child(1) {
                     font-size: 1em;
                     font-weight: 500;
