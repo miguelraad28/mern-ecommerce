@@ -3,41 +3,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    padding: 15px;
+    max-width: fit-content;
+    min-width: 250px;
+
+    a {
+        text-decoration: none;
+        margin-top: 15px;
+    }
 
     .cartListContainer {
-        border: 1px solid black;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         max-width: 700px;
         min-width: 400px;
-        .cartTitle{
+
+        .cartTitle {
             display: flex;
             flex-direction: column;
             align-items: center;
-            a{
-                text-decoration: none;
-                font-style: italic;
-                font-size: 1.2em;
-                color: rgb(62, 62, 62);
-                &:hover{
-                    color: black;
-                }
-            }
         }
+
         .cartDetail {
             display: flex;
             border: 2px solid red;
+            margin: 15px 0;
             .cartDetailImage>img {
                 width: calc(100px + 10vw)
             }
+
             .cartDetailInfo {
                 display: flex;
             }
         }
     }
-    .cartPaymentButtons{
+
+    .cartPaymentButtons {
         display: flex;
         gap: 5px;
         margin-top: 5px;

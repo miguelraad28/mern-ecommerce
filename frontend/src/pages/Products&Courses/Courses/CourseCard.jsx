@@ -31,7 +31,7 @@ const CourseCard = ({course }) => {
                 <div className='courseButtons'>
                     {userLoggedIn ?
                         (accessTo.includes(_id) ?
-                            <Link to="/myaccount/courses"><button className='pinkButton' ><i class="bi bi-archive-fill"></i>VER MIS CURSOS</button></Link>
+                            <Link to="/myaccount/courses"><button className='salmonButton' ><i class="bi bi-archive-fill"></i>VER MIS CURSOS</button></Link>
                             :
                             <button className={cart.includes(_id) ? "redButton" : 'greenButton'} onClick={cart.includes(_id) ? () => substractFromCart(_id) : () => addToCart(_id)}>{cart.includes(_id) ? <><i class="bi bi-cart-dash-fill"></i>ELIMINAR DEL CARRITO</> : <><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</>}</button>)
                         : <button className='greenButton' onClick={() => Swal.fire("Debes iniciar sesión para añadir cursos al carrito")}><i class="bi bi-cart-plus-fill"></i>AÑADIR AL CARRITO</button>}

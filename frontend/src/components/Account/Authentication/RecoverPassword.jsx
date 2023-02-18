@@ -14,7 +14,7 @@ const RecoverPassword = () => {
     const handleOnChange = (e) => {
         setEmail({
             ...email,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -22,27 +22,30 @@ const RecoverPassword = () => {
         e.preventDefault()
         setLoading(true)
         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/recoverPassword`, email)
-        if(!res.data.pending){
+        if (!res.data.pending) {
             setLoading(false)
             navigate(res.data.navigate)
-        }else{
+        } else {
             setLoading(false)
             Swal.fire(res.data.message)
         }
     }
     return (
         <div className='container'>
-            {loading ? <div className='spinnerBackground'><Spinner/></div> : null}
+            {loading ? <div className='spinnerBackground'><Spinner /></div> : null}
             <div className='logInForm' >
-                <h2>INICIAR SESIÓN</h2>
+                <h2>CÓDIGO DE RECUPERO DE CONTRASEÑA</h2>
                 <form onSubmit={(e) => sendRecoveryPasswordToken(e, email)}>
-                    <label>Email</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={email.email}
-                        name="email"
-                        required
-                        type="email" />
+                    <div className='inputFormContainer'>
+                        <input
+                            placeholder='Dirección de email'
+                            onChange={handleOnChange}
+                            value={email.email}
+                            name="email"
+                            required
+                            type="email" />
+                        <i className="bi bi-envelope"></i>
+                    </div>
                     <button type='submit' className='skyblueButton'>ENVIAR CÓDIGO</button>
                 </form>
             </div>

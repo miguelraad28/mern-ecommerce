@@ -8,6 +8,7 @@ const MyCoursesList = ({ myCourses }) => {
     const [lastCourseAdquired, setLastCourseAdquired] = useState(false);
     useEffect(() => {
         setLastCourseAdquired(...myCourses.slice(-1))
+        window.scrollTo(0, 0);
     }, [myCourses]);
 
     return (

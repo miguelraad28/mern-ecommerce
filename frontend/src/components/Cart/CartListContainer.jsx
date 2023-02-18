@@ -6,6 +6,8 @@ import axios from "axios"
 import "./CartListContainer.scss";
 import { Link } from "react-router-dom"
 import Spinner from '../../components/Spinner/Spinner';
+import CartUserLoggedInFalse from './CartUserLoggedInFalse';
+import CartEmpty from './CartEmpty';
 const CartListContainer = () => {
     const { cart } = useContext(CartContext);
     const { userLoggedIn, setLoading, loading } = useContext(AuthContext);
@@ -65,14 +67,23 @@ const CartListContainer = () => {
         if (cart.length > 0) getCartDetail()
     }, [cart]);
     return (
-        <div className='cartContainer'>
-            <div className='cartListContainer'>
-                {userLoggedIn ? <CartList cart={cart} cartDetail={cartDetail} totalAmount={totalAmount} /> : <div className='cartTitle'><h2>Debes iniciar sesión para añadir al carrito</h2><Link to="/login">Iniciá sesión acá</Link></div>}
-            </div>
-            <div className='cartPaymentButtons'>
-                <button className='orangeButton'>TRANSFERENCIA</button>
-                <button className='blueButton'>PAYPAL</button>
-                {userLoggedIn && cart.length > 0 ? <button className='skyblueButton' onClick={() => proccessPurchase("mercado pago")}>MERCADO PAGO</button> : null}
+        <div className="container">
+            <div className='cartContainer'>
+                {userLoggedIn ?
+                    cart.length > 0 ?
+                        (<>
+                            <div className='cartListContainer'>
+                                <CartList cart={cart} cartDetail={cartDetail} totalAmount={totalAmount} />
+                            </div>
+                            <div className='cartPaymentButtons'>
+                                <button className='orangeButton'>TRANSFERENCIA</button>
+                                <button className='blueButton'>PAYPAL</button>
+                                <button className='skyblueButton' onClick={() => proccessPurchase("mercado pago")}>MERCADO PAGO</button>
+                            </div>
+                        </>) :
+                        <CartEmpty />
+                    :
+                    <CartUserLoggedInFalse />}
             </div>
         </div>
     );

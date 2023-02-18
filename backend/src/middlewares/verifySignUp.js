@@ -18,7 +18,8 @@ const checkValidationToken = async (req, res, next) => {
         if (err) {
             return res.json({ message: "Link expirado, solicita el reenvío", err: err, pending: true })
         } else {
-            req.userId = decoded.id, req.code = req.body.code
+            req.userId = decoded.id
+            req.code = req.body.code
             next()
         }
     })

@@ -1,13 +1,13 @@
 .glider-contain {
     .glider-prev {
-        translate: 15px 18px;
+        translate: 15px 30px;
         color: #666;
         &:hover{
             color: #3c3c3c;
         }
     }
     .glider-next{
-        translate: -15px 18px;
+        translate: -15px 30px;
         color: #666;
         &:hover{
             color: #3c3c3c;
@@ -31,5 +31,6 @@
         padding-bottom: 12px;
         text-overflow: ellipsis;
         overflow: hidden;
+        white-space: nowrap;
     }
 }

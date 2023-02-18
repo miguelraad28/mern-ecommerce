@@ -25,7 +25,6 @@ import ChangePassword from "./components/Account/Authentication/ChangePassword/C
 function App() {
   const [loadingSession, setLoadingSession] = useState(true);
   const { userLoggedIn, autoLogIn } = useContext(AuthContext);
-
   useEffect(() => {
     autoLogIn().then(() => setLoadingSession(false))
   }, []);
@@ -54,7 +53,7 @@ function App() {
           <Route path="/myaccount/courses" element={<MyCoursesListContainer />} />
           <Route path="/myaccount/courses/:courseId" element={<WatchCourse />} />
           <Route path="/purchaseFinished" element={<PurchaseWithQueryParams history={history} />} />
-          <Route path="/changePassword" element={<ChangePassword/>}/>
+          <Route path="/changePassword" element={<ChangePassword />} />
         </Route>
         <Route path="/cart" element={<CartListContainer />} />
 

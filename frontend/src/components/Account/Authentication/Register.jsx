@@ -3,6 +3,9 @@ import { AuthContext } from '../../../context/auth/AuthProvider';
 import { Link } from 'react-router-dom';
 import UsePassword from '../../../hooks/TogglePassword/UsePassword';
 import "./Login&Register.scss";
+import InputEmailConfirmationContainer from '../../Inputs/InputEmailConfirmationContainer';
+import InputPasswordContainer from '../../Inputs/InputPasswordContainer';
+import InputPasswordConfirmationContainer from '../../Inputs/InputPasswordConfirmationContainer';
 const Register = () => {
     const { signUp } = useContext(AuthContext);
     const [user, setUser] = useState({});
@@ -26,51 +29,39 @@ const Register = () => {
             <div className='signUpForm'>
                 <h2>CREAR CUENTA</h2>
                 <form onSubmit={(e) => signUp(e, user)}>
-                    <label>Nombre</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={name}
-                        name="name"
-                        required
-                        type="text" />
-                    <label>Apellido</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={surname}
-                        name="surname"
-                        required
-                        type="text" />
-                    <label>Email</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={email}
-                        name="email"
-                        required
-                        type="email" />
-                    <label>Confirmación de email</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={emailConfirmation}
-                        name="emailConfirmation"
-                        required
-                        type="email" />
-                    <label>Contraseña</label>
-                    <div className='inputPasswordContainer'>
+                    <div className='inputFormContainer'>
                         <input
-                            className="inputPasswordToggable"
+                            placeholder='Nombre'
                             onChange={handleOnChange}
-                            value={password}
-                            name="password"
+                            value={name}
+                            name="name"
                             required
-                            type={inputType} /><i onClick={togglePassword} className={iconClassName}></i>
+                            type="text" />
+                        <i class="bi bi-person-vcard"></i>
                     </div>
-                    <label>Confirmación de contraseña</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={passwordConfirmation}
-                        name="passwordConfirmation"
-                        required
-                        type="password" />
+                    <div className='inputFormContainer'>
+                        <input
+                            placeholder='Apellido'
+                            onChange={handleOnChange}
+                            value={surname}
+                            name="surname"
+                            required
+                            type="text" />
+                        <i class="bi bi-person-vcard-fill"></i>
+                    </div>
+                    <div className='inputFormContainer'>
+                        <input
+                            placeholder='Dirección de email'
+                            onChange={handleOnChange}
+                            value={email}
+                            name="email"
+                            required
+                            type="email" />
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <InputEmailConfirmationContainer email={email} emailConfirmation={emailConfirmation} handleOnChange={handleOnChange}/>
+                    <InputPasswordContainer password={password} togglePassword={togglePassword} iconClassName={iconClassName} handleOnChange={handleOnChange} inputType={inputType}/>
+                    <InputPasswordConfirmationContainer password={password} passwordConfirmation={passwordConfirmation} handleOnChange={handleOnChange}/>
                     <button type='submit' className='purpleButton'>REGISTRARME</button>
                 </form>
                 <div className='forgotPasswordContainer'>

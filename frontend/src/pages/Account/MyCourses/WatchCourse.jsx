@@ -1,10 +1,14 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 const WatchCourse = () => {
     const [videoURL, setVideoURL] = useState(false);
     const [courseSource, setCourseSource] = useState(false);
     const { courseId } = useParams()
+    const location = useLocation()
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
     const getCourseSource = async () => {
         try {
             const course = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/courses/${courseId}`)

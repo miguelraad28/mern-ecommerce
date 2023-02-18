@@ -4,8 +4,6 @@ const {checkEmail, checkValidationToken, checkPassword} = require("../middleware
 const {autoLogInTokenValidation, verifyToken} = require("../middlewares/verifyJWT")
 const {register, verifyEmail, resendValidationCode, login, recoverPassword, recoverSession, changePassword} = require("../controllers/auth.controller")
 
-
-
 // Registration routes
 router.route("/register")
 .post(checkEmail, checkPassword, register)

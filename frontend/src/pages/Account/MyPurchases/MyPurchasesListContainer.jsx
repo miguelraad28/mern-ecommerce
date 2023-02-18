@@ -19,18 +19,21 @@ const MyPurchasesListContainer = () => {
     }
     useEffect(() => {
         getPurchases()
+        window.scrollTo(0, 0);
     }, []);
     return (
-        <div className='container'>
-            <div className='myPurchasesListContainer'>
-                {myPurchases ? (myPurchases.length > 0 ? <MyPurchasesList myPurchases={myPurchases} /> :
-                    <div className='emptySection'>
-                        <h2>NO HAS COMPRADO NADA AÚN</h2>
-                        <Link to="/courses"><button className='pinkButton'>VER CURSOS</button></Link>
-                    </div>
-                ) : <Spinner />}
-            </div>
-        </div>
+        <>
+            {myPurchases ? <div className='container'>
+                <div className='myPurchasesListContainer'>
+                    {(myPurchases.length > 0 ? <MyPurchasesList myPurchases={myPurchases} /> :
+                        <div className='emptySection'>
+                            <h2>NO HAS COMPRADO NADA AÚN</h2>
+                            <Link to="/courses"><button className='pinkButton'>VER CURSOS</button></Link>
+                        </div>
+                    )}
+                </div>
+            </div> : <Spinner />}
+        </>
     );
 }
 

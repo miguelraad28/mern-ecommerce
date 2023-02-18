@@ -10,35 +10,35 @@
 
     .lastCourseAdquiredContainer {
         display: grid;
-        grid-template-columns: auto;
+        grid-template-columns: repeat(2, 50%);
         margin: auto;
         border-bottom: 1px solid rgb(192, 192, 192);
-        .lastCourseAdquiredData {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            padding: 12px 0;
-            .lastCourseAdquiredSourceAndButton {
-                max-width: 50%;
-                img{
-                    width: 100%;
-                }
+        gap: 12px;
+        padding: 12px 0;
+
+        h3 {
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .lastCourseAdquiredNameAndDescription {
+            h3 {
+                text-transform: uppercase;
+                text-align: start;
             }
 
-            .lastCourseAdquiredNameAndDescription {
-                h3{
-                    text-transform: uppercase;
-                }
-                p:nth-child(1) {
-                    font-size: 1em;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                }
-                p:nth-child(2){
-                    font-size: 0.8em;
-                }
+            p:nth-child(1) {
+                font-size: 1em;
+                font-weight: 500;
+                text-transform: uppercase;
             }
+
         }
+
     }
 
     .myCoursesList {
@@ -51,6 +51,7 @@
 // Boton para ir a ver el curso
 .watchCourseButton {
     text-decoration: none;
+
     button {
         margin-top: 0px;
         width: 100%;

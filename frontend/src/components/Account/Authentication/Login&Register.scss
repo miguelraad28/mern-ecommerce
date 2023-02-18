@@ -5,7 +5,9 @@
     flex-direction: column;
     background-color: white;
     padding: 15px;
-    width: calc(200px + 6vw);
+    width: max-content;
+    max-width: 310px;
+
 
     h2 {
         text-align: center;
@@ -20,29 +22,75 @@
         flex-direction: column;
         width: 100%;
 
-        label {
-            margin-bottom: 3px;
-            margin-left: 8px;
-        }
+        .inputFormContainer {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
 
-        input {
-            font-size: 1em;
-            padding: 5px 10px;
-            margin-bottom: 10px;
-            border: 0;
-            background-color: rgb(240, 240, 240);
+            i:not(.bi-eye, .bi-eye-slash) {
+                font-size: 1.2em;
+                position: absolute;
+                top: 3px;
+                left: 5px;
 
-            &:focus {
+            }
+
+            .bi-eye-slash,
+            .bi-eye {
+                position: absolute;
+                font-size: 1.2em;
+                right: 5px;
+                top: 3px;
+            }
+
+            .inputPasswordToggable {
+                padding: 5px 30px 5px 30px;
+
+            }
+
+            input[type=password] {
+                font-weight: 600;
+                letter-spacing: 1.5px;
+            }
+
+            input[type=password][value=""] {
+                font-weight: 400;
+                letter-spacing: normal;
+            }
+
+            input {
+                padding: 5px 5px 5px 30px;
+                font-size: 1em;
+                margin-bottom: 20px;
+                border: 0;
+                border-bottom: 1px solid gray;
                 outline: 0;
-                box-shadow: inset 0 0 0 1px rgb(192, 192, 192);
+
+                &:is(:focus) {
+                    border-bottom: 1px solid rgb(255, 121, 201);
+                }
+
+                &:is(:valid) {
+                    border-bottom: 1px solid rgb(0, 203, 186);
+                }
+            }
+
+            input:is(:focus)~i {
+                color: rgb(255, 128, 198);
+            }
+
+
+            input:is(:focus)~i {
+                color: rgb(255, 121, 201);
+            }
+
+            input:is(:valid)~i {
+                color: rgb(0, 203, 186);
             }
 
         }
 
-        input[type='password'] {
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
     }
 
     .forgotPasswordContainer {
@@ -50,10 +98,11 @@
         display: flex;
         flex-direction: column;
         margin-top: 5px;
+        font-size: 0.9em;
 
         a {
             text-decoration: none;
-            color: red;
+            color: rgb(255, 90, 90);
             font-style: italic;
         }
 

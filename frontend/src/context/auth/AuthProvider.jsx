@@ -32,17 +32,21 @@ const AuthProvider = (props) => {
         e.preventDefault()
         setLoading(true)
         if (user.email !== user.emailConfirmation) {
+            setLoading(false)
             return Swal.fire("La dirección de email no coincide")
         } else if (user.password !== user.passwordConfirmation) {
+            setLoading(false)
             return Swal.fire("Las contraseñas no coinciden")
         }else if(user.name === undefined || user.name.length < 1){
+            setLoading(false)
             return Swal.fire("Indícanos tu nombre para seguir con el registro")
         }else if(user.surname === undefined || user.surname.length < 1){
+            setLoading(false)
             return Swal.fire("Indícanos tu apellido para seguir con el registro")
         }else if(user.password.length < 8 || user.password.length > 16){
+            setLoading(false)
             return Swal.fire("La contraseña debe ser entre 8 y 16 caracteres")
         } else {
-            setLoading(true)
             try {
                 const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/register`, user)
                 if (!res.data.pending) {

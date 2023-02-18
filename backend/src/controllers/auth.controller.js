@@ -160,8 +160,9 @@ authController.verifyEmail = async (req, res) => {
     }
 }
 authController.login = async (req, res) => {
+    const email = req.body.email
 
-    const userFound = await User.findOne({ email: req.body.email })
+    const userFound = await User.findOne({ email: email })
 
     if (!userFound) return res.json({ message: "El email no está registrado", pending: true })
 

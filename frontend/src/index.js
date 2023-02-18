@@ -5,6 +5,7 @@ import { AuthProvider } from './context/auth/AuthProvider';
 import { CartProvider } from './context/cart/CartProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <CartProvider>
     <AuthProvider>

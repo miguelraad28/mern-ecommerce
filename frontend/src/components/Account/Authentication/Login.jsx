@@ -20,26 +20,32 @@ const Login = () => {
         password,
     } = user
     return (
-        <div className='container'>
+        <div className='gridContainer'>
             <div className='logInForm' >
                 <h2>INICIAR SESIÓN</h2>
                 <form onSubmit={(e) => logIn(e, user)}>
-                    <label>Email</label>
-                    <input
-                        onChange={handleOnChange}
-                        value={email}
-                        name="email"
-                        required
-                        type="email" />
-                    <label>Contraseña</label>
-                    <div className='inputPasswordContainer'>
+                    <div className='inputFormContainer'>
                         <input
+                            placeholder='Dirección de email'
+                            onChange={handleOnChange}
+                            value={email}
+                            name="email"
+                            required
+                            type="email" />
+                        <i className="bi bi-envelope"></i>
+                    </div>
+
+                    <div className='inputFormContainer'>
+                        <input
+                            placeholder='Contraseña'
                             className="inputPasswordToggable"
                             onChange={handleOnChange}
                             value={password}
                             name="password"
                             required
-                            type={inputType} /><i onClick={togglePassword} className={iconClassName}></i>
+                            type={inputType} />
+                        <i className="bi bi-lock"></i>
+                        <i onClick={togglePassword} className={iconClassName}></i>
                     </div>
                     <button type='submit' className='pinkButton'>INICIAR</button>
                 </form>

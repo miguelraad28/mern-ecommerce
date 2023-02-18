@@ -12,41 +12,50 @@
         background-color: white;
         padding: 15px;
         position: relative;
+        gap: 20px;
 
         h2 {
-            text-align: center;
+            text-align: start;
             font-weight: 400;
         }
 
         .searcher {
             display: flex;
             gap: 10px;
-            input {
-                font-size: 1em;
-                padding: 5px 30px 5px 10px;
-                border: 0;
-                background-color: rgb(240, 240, 240);
+            max-height: 33px;
 
-                &:focus {
+            form {
+                display: flex;
+                gap: 5px;
+
+                input {
+                    font-size: 1em;
+                    padding: 5px 35px 5px 10px;
                     outline: 0;
-                    box-shadow: inset 0 0 0 1px rgb(192, 192, 192);
+                    border: 0;
+                    border-bottom: 1px solid gray;
+                    &:is(:focus) {
+                        border-bottom: 1px solid rgb(255, 121, 201);
+                    }
                 }
-
+                input:is(:focus)~i {
+                    color: rgb(255, 121, 201);
+                }
             }
-        }
 
-        i {
-            cursor: pointer;
-            position: absolute;
-            font-size: 1.2em;
-            right: 125px;
-            top: 18px;
+            i {
+                cursor: pointer;
+                position: absolute;
+                font-size: 1.2em;
+                right: 118px;
+                top: 18px;
 
-            &:active {
-                color: gray;
+                &:active {
+                    color: rgb(0, 203, 186);
+                }
             }
-        }
 
+        }
     }
 
     .courseCard {

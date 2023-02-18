@@ -12,16 +12,18 @@
     }
 }
 .spinnerContainer {
+    grid-column: 1 / -1;
     display: flex;
     justify-content: center;
-    margin: 25px;
+    margin: 50px;
+    rotate: 45deg;
     .loadingSpinner {
         width: 50px;
         height: 50px;
-        border: 8px solid rgb(255, 0, 153);
+        border: 8px solid rgb(255, 55, 175);
         border-radius: 50%;
-        border-left-color: rgba(128, 128, 128, 0.127);
-        border-bottom-color: rgba(128, 128, 128, 0.127);
+        border-left-color: rgba(128, 128, 128, 0.2);
+        border-right-color: rgba(128, 128, 128, 0.2);
         animation: spin 1s infinite;
     }
 }

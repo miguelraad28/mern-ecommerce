@@ -9,9 +9,7 @@ const MyCoursesListContainer = () => {
     const [myCourses, setMyCourses] = useState(false);
     const location = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location]);
+    
     const getMyCourses = async () => {
         const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/myAccount/courses`, {
             headers: {
@@ -24,17 +22,19 @@ const MyCoursesListContainer = () => {
         getMyCourses()
     }, []);
     return (
-        <div className='container'>
-            <div className='myCoursesListContainer'>
-                {console.log(myCourses)}
-                {myCourses ? (myCourses.length > 0 ? <MyCoursesList myCourses={myCourses} /> :
-                    <div className='emptySection'>
-                        <h2>NO HAS ADQUIRIDO NINGÚN CURSO AÚN</h2>
-                        <Link to="/courses"><button className='pinkButton'>VER CURSOS</button></Link>
-                    </div>
-                ) : <Spinner />}
-            </div>
-        </div>
+        <>
+            {myCourses ? <div className='container'>
+                <div className='myCoursesListContainer'>
+                    <h2 className='titleh2'>MIS CURSOS</h2>
+                    {(myCourses.length > 0 ? <MyCoursesList myCourses={myCourses} /> :
+                        <div className='emptySection'>
+                            <h2>NO HAS ADQUIRIDO NINGÚN CURSO AÚN</h2>
+                            <Link to="/courses"><button className='pinkButton'>VER CURSOS</button></Link>
+                        </div>
+                    )}
+                </div>
+            </div> : <Spinner />}
+        </>
     );
 }
 

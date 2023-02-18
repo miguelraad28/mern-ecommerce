@@ -1,3 +1,12 @@
+# Al crear el admin Panel:
+
+## Los títulos guardarlos en toLowerCase
+
+# Al buscar cursos
+
+## Crear un array auxiliar donde no tenga tíldes para poder hacer el filter
+
+# Enviar a ChangePassword un state a través de navigate, asi si viene de "RECUPERA TU CONTRASEÑA" no pide envío de codio al mail, pero si se sabe la contraseña y solo quiere cambiarla, y ese state de "recover" es false, a la hora de darle click a "CAMBIAR CONTRASEÑA" enviar un codigo de validación al mail, y hasta que lo valide que no se haga el cambio.
 
 # No almacenar el role.name en el auth context ni en el doc del usuario.
 
