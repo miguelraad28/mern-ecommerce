@@ -32,7 +32,7 @@ const MyAccount = () => {
                     <Link to="/myaccount/purchases"><button className='purpleButton'>MIS COMPRAS</button></Link>
                 </div>
                 <button className='redButton' onClick={() => logOut()}>CERRAR SESIÓN</button>
-                {location?.state?.message ? <p className='locationMessageMyAccount'><i class="bi bi-patch-check-fill"></i>{location.state.message}<i class="bi bi-patch-check-fill"></i></p> : null}
+                {location?.state?.message ? <div className='locationMessageMyAccountContainer'><i class="bi bi-patch-check-fill"></i><p className='locationMessageMyAccount'>{location.state.message}</p><i class="bi bi-patch-check-fill"></i></div> : null}
             </div >
         </div>
     );

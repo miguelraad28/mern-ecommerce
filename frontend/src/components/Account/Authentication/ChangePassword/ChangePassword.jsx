@@ -44,7 +44,7 @@ const ChangePassword = () => {
                             required
                             type={inputType} />
                         <i className="bi bi-lock" style={(newPassword?.length > 0 && newPassword?.length < 8) || newPassword?.length > 16 ? { color: "red" } : null}></i>
-                        <i onClick={togglePassword} className={iconClassName} style={(newPassword?.length > 0 && newPassword?.length < 8) || newPassword?.length > 16 ? { color: "red" } : null}></i>
+                        <i onClick={togglePassword} className={iconClassName} style={(newPassword?.length > 0 && newPassword?.length < 8) || newPassword?.length > 16 ? { color: "red", cursor: "pointer"} : {cursor: "pointer"}}></i>
                         <p style={(newPassword?.length > 0 && newPassword?.length < 8) || newPassword?.length > 16 ? { marginTop: "-15px", paddingBottom: "20px", textAlign: "center", fontSize: "0.8em", color: "red" } : { marginTop: "-15px", paddingBottom: "20px", textAlign: "center", fontSize: "0.8em" }}>La contraseña debe tener entre 8 y 16 caracteres</p>
                     </div>
                     <div className='inputFormContainer'>

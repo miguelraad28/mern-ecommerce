@@ -6,22 +6,6 @@
     max-width: max-content;
     padding: 15px;
 
-    .locationMessageMyAccount {
-        margin-top: 12px;
-        i {
-            color: rgb(6, 194, 6);
-            font-size: 1em;
-            animation: bouncePatch 2s ease infinite;
-            position: absolute;
-            translate: 0 1px;
-            margin-left: 5px;
-
-            &:nth-child(1) {
-                margin-left: -20px;
-            }
-        }
-    }
-
     .myAccountDataContainer {
         margin-bottom: 15px;
         display: grid;
@@ -73,5 +57,36 @@
     button {
         font-weight: 500;
         width: 100%;
+    }
+
+    .locationMessageMyAccountContainer {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+
+        i {
+            color: rgb(6, 194, 6);
+            font-size: 1em;
+            animation: bouncePatch 2s ease infinite;
+            position: absolute;
+            translate: 0 1px;
+            margin-left: 5px;
+
+            &:first-child {
+
+                left: 0;
+            }
+
+            &:last-child {
+                right: 0;
+            }
+        }
+
+        p {
+            text-align: center;
+            max-width: calc(100% - 60px);
+        }
     }
 }
